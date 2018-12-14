@@ -28,7 +28,7 @@ class Score
     private $encounterId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Competitor", inversedBy="scores")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Competitor", inversedBy="scores", cascade="persist")
      * @ORM\JoinColumn(nullable=false)
      */
     private $competitorId;

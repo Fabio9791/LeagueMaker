@@ -1,83 +1,230 @@
-*{
-	box-sizing: border-box;
+
+
+@media (min-width: 300px) and (max-width: 767.98px) {
+
+    .logo{
+        display: none;
+    }
+
+    .container .create {
+        width: 100%;
+    }
+
+    .container .carta{
+        padding-bottom: 3rem;
+    }
+    
 }
-body{
+@media (min-width: 768px) and (max-width: 991.98px) { 
+
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    
+}
+
+ body {
     margin: 0;
     padding: 0;
     background-color: #455050;
 }
 
-header{
-background-color: #354141;
-box-shadow: 4px 6px rgb(184, 5, 5);
-}
-
-main{
+main {
     color: #ffffff;
 }
-.navbar{
+
+.navbar {
     background-color: #455050;
 }
 
-.logo{
-    padding: 0;
+p, h2, h3 {
+    color: #ffffff;
+    text-shadow: rgb(184, 5, 5) 2px 2px 3px;
 }
 
-.col-5 h2, p{
-    text-shadow:rgb(184, 5, 5) 2px 2px 3px;
-}
-
-.tete{
-    display: flex;
-    justify-content: space-between;
-}
-
-.search{
-    display: flex;
-    justify-content: flex-end;
-}
-
-.title h3{
+ header {
+    background-color: #354141;
+    margin-bottom: 1rem;
     box-shadow: 4px 6px rgb(184, 5, 5);
 }
 
-.events .articles{
-    padding-left: 0.5rem;
+.create{
+    padding: 2rem;
     background-color: #354141;
+    border-radius: 1rem;
+    margin: 2rem auto;
+    width: 50%;
     box-shadow: 4px 6px rgb(184, 5, 5);
 }
 
-.instantCompetition .competition{
-    background-color: #354141;
-    box-shadow: 4px 6px rgb(184, 5, 5);
-}
-
-.pagination{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 0.2rem;
-    margin-bottom: 0;
-}
-
-.page-item .page-link{
-    background-color: #354141;
-    border-color: #354141;
-}
-
-.title{
+/**cards**/
+.cardManage, .cardInvite, .cardCreate{
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
     text-align: center;
-    background-color: #293333;
+   
 }
 
-footer{
+.news {
+    background: #354141;
+      position: relative;
+      overflow: hidden;
+      z-index:1;
+      transition: all 0.5s ease;	
+    color: #4A4A4A;
+      border: 1px solid #E8E8E8;
+      border-radius: 0.5rem;
+  }
+  
+  .news:hover{
+    box-shadow: 0px 21px 36px -14px rgba(220,220,220,1);;
+  
+  }
+  
+  
+  .news .img-figure {
+      position: relative;
+  }
+  
+  .news .img-figure img {
+      position: relative;	
+      overflow: hidden;
+      transition: all 1s ease;
+  }
+  
+  .news:hover .img-figure img {
+      transform: scale(1.10);
+  }
+  
+  .news .title {
+      /*padding: 29px 30px;*/
+      padding: 20px 20px;
+      position: absolute;
+      left: 0;
+      background: #fff;
+      width: 100%;
+      height: 100%;
+      transition: all 0.5s ease;	
+  }
+  
+  
+  .news .title {
+    font-size:12px;
+    color:#929292;
+  
+  }
+  .news .title h1 {
+      margin: 10px 0 0;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 19px;
+      color: #4A4A4A;
+      text-align: left;
+    transition: all 0.5s ease;	
+  }
+  
+  .news:hover .title  {
+      margin-top: -100px;
+      background: #fff;
+    cursor:pointer;
+  }
+  
+  
+  .news:hover .title h1  {
+    color: #0085FF; 
+  }
+  
+  .news  p.description {
+      position: relative;
+      font-weight: normal;
+      line-height: 22px;
+      opacity: 0;
+  
+      text-align: left;
+  
+      padding: 15px 20px 0px 20px;
+      transition: all 0.5s ease;	
+  }
+  
+  .news:hover p.description  {
+      opacity: 1;
+    margin-top: -10px;
+  }
+  
+  p.more {
+      text-align: left;
+    margin-left:20px;
+  }
+  
+  .more a {
+      position: relative;
+      font-size: 13px;
+      margin-top: 30px;
+      display: block;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+      display: inline-block;
+      color: #929292;
+      padding: 6px 16px;
+      border: 1px solid #929292;
+      text-decoration: none;
+  }
+  
+  
+  .news:hover .more a {
+    background:#4A4A4A;
+    color:white;
+  }
+  
+  
+  
+  .cat {
+      background: #DCDCDC;
+      color: #4A4A4A;
+      text-transform: uppercase;
+      position: absolute;
+      left: 0;
+      top: 20px;
+      z-index: 1;
+      padding: 6px 16px;
+    opacity:.8;
+    transition: all 0.5s ease;	
+  }
+  /**form create competition**/
+  form[name=competition_form]{
+  padding: 0.5rem;
+  margin: 0 auto;
+  
+  }
+#competition_form label{
+	margin-right: 1rem;
+	font-size: 1.2rem;
+}
+
+#competition_form input {
+	
+}
+
+#competition_form_submit{
+	
+	margin-top: 1rem;
+	padding: 0.7rem;
+	border-radius: 1rem;
+	font-size: 1.3rem;
+}
+
+  .news:hover .cat{
+    background:#0085FF;
+    color:white;
+  }
+
+  .carta{
+      padding-right: 0;
+      padding-left: 0;
+  }
+/**footer**/
+footer {
     background-color: #354141;
     box-shadow: 4px 6px rgb(184, 5, 5);
-    position: absolute;
-   	display: flex;
-   	bottom: 0;
-   	width: 100%;
-}
+} 
 
-.login{
-	display: block;
-}

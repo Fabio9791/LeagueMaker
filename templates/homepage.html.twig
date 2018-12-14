@@ -1,18 +1,92 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}
 {{ parent() }}
 homepage
 {% endblock %}
 
+
 {% block body %}
-<div class="container">
+<main class="container">
+<section class="row create">
+	<div class="col-sm-12 formComp">
 	
-</div>
+		{% include 'bundles/FOSUserBundle/Security/login_content.html.twig' %}
+	</div>
+</section>
+<hr>
+<section class="container carta">
+	<div class="row">
+		<div class="col-sm-4 cardCreate">
+			<div class="news">
+				<div class="img-figure">
+					<img
+						src="http://www.lfricambi724.it/media/cache/lb/600/a5a2efa3-fb66-1654-2603-21738785e5d7_fiera%20dublino%202.jpg"
+						class="img-responsive">
+				</div>
+
+				<div class="title">
+					<h1>CREATE COMPETITION</h1>
+				</div>
+				<p class="description">Create competition and play.</p>
+
+				<p class="more">
+					<a href="#">SEE MORE</a><i class="fa fa-angle-right"
+						aria-hidden="true"></i>
+				</p>
+			</div>
+
+
+		</div>
+		<div class="col-sm-4 cardManage">
+			<div class="news">
+				<div class="img-figure">
+					<img
+						src="http://www.lfricambi724.it/media/cache/lb/600/a5a2efa3-fb66-1654-2603-21738785e5d7_fiera%20dublino%202.jpg"
+						class="img-responsive">
+				</div>
+
+				<div class="title">
+					<h1>VIEW AND MANAGE</h1>
+				</div>
+				<p class="description">Manage your competition.</p>
+
+				<p class="more">
+					<a href="#">SEE MORE</a><i class="fa fa-angle-right"
+						aria-hidden="true"></i>
+				</p>
+			</div>
+
+
+		</div>
+		<div class="col-sm-4 cardInvite">
+			<div class="news">
+				<div class="img-figure">
+					<img
+						src="http://www.lfricambi724.it/media/cache/lb/600/a5a2efa3-fb66-1654-2603-21738785e5d7_fiera%20dublino%202.jpg"
+						class="img-responsive">
+				</div>
+
+				<div class="title">
+					<h1>INVITE YOUR FRIENDS</h1>
+				</div>
+				<p class="description">Invite friends to play with you.</p>
+
+				<p class="more">
+					<a href="#">SEE MORE</a><i class="fa fa-angle-right"
+						aria-hidden="true"></i>
+				</p>
+			</div>
+
+
+		</div>
+	</div>
+</section>
+<hr>
+</main>
 {% endblock %}
 
+
+
 {% block javascripts %}
-
-
 
 {% endblock %}
