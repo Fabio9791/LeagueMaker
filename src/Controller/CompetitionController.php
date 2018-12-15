@@ -7,31 +7,35 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Competition;
 use App\Form\CompetitionFormType;
 use Symfony\Component\Routing\Annotation\Route;
+use App\DTO\createCompetition;
 
 class CompetitionController extends Controller
 {
+
     /**
      * Creation of the form to create a competition
-     * 
+     *
      * @Route("/competition/create", name="create_competition", methods={"GET", "POST"})
      */
     public function createCompetition(Request $request, Session $session)
     {
-        $competition = new Competition();
-        $form = $this->createForm(CompetitionFormType::class, $competition, ['standalone' => true]);
+        if ($_SERVER['REQUEST_METHOD'] != 'POST')
+        return $this->render('Competition/create.html.twig', [
+            'request' => $request
+        ]);
         
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($competition);
-            $manager->flush();
-            
-            $session->getFlashBag()->add('success', 'The competition was created');
-            
-            return $this->redirectToRoute('homepage');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $encounters = 'fabio is the best';
+            $competition = new createCompetition();
+            $competition->name = $request->request->get('name');
+            $competition->name = $request->request->get('location');
+            $solution = $_POST;
+            return $this->render('about.html.twig', [
+                'request' => $request,
+                'encounters' => $encounters,
+                'solution' => $solution
+            ]);
         }
-        
-        return $this->render('Competition/create.html.twig', ['formObj' => $form->createView()]);
     }
 }
 

@@ -78,7 +78,7 @@ class createCompetition
      */
     public function setTag($tag)
     {
-        $this->tag = $tag;
+        array_push($this->tag,$tag);
     }
 
     /**
@@ -86,7 +86,7 @@ class createCompetition
      */
     public function setCompetitor($competitor)
     {
-        $this->competitor = $competitor;
+        array_push($this->competitor,$competitor);
     }
 
     
