@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/css/style.css">
 {% endblock %}
 </head>
-<body>
+<body class="container-fluid">
 	{% block header %}
 	{% include 'header.html.twig' %}
 	{% endblock %}
@@ -20,6 +20,9 @@
 	{% block navbar %}
 	{% include 'navbar.html.twig' %}
 	{% endblock %}
+	
+	<div class="container p-1">
+  
 
 	{% block body %}
 

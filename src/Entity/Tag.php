@@ -15,6 +15,7 @@ class Tag
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="UUID")
      * @ORM\Column(type="guid")
+     * @Groups({"tag", "tag.id"})
      */
     private $id;
 
