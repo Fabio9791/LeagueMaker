@@ -30,7 +30,7 @@ class TagController extends Controller
             ['data' => $tags],
             200,
             [],
-            ['groups' => ['tag', 'competition.tagId']]
+            ['groups' => ['tag', 'competitions.tagId']]
             
             );
         if ($request->getMethod() == 'OPTIONS') {
