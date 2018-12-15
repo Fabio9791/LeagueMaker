@@ -6,7 +6,8 @@ homepage
 
 
 {% block body %}
-<form>
+
+	<form>
         <div class="form-group row">
             <label for="tagSearch" class="col-sm-2 col-form-label">Search for Tag</label>
             <div class="col-sm-10 row">
@@ -103,7 +104,7 @@ homepage
 
 {% block javascripts %}
 {{ parent() }}
-	<script src="/js/searchTagClass.js"></script>
+	<script src="/js/searchTagJquery.js"></script>
 	<script type="text/javascript">
     	let client = new Client(
     		document.getElementById('tagSearchButton'),

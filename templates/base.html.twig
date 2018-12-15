@@ -21,9 +21,15 @@
 	{% include 'navbar.html.twig' %}
 	{% endblock %}
 	
-	<div class="container p-1">
-  
-
+  	<div class="container p-1">
+    		{% for category,  flashMessages in app.session.flashbag.all() %}
+    			{% if category == 'success' %}{% set class="alert-success" %}{% endif %}
+    			
+    			<div class="alert {{ class }}" role="alert">
+    				{{ flashMessages|join(',') }}
+    			</div>
+    		{% endfor %}
+	</div>
 	{% block body %}
 
 	{% endblock %}

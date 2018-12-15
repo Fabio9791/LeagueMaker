@@ -30,7 +30,7 @@ class TagController extends Controller
             ['data' => $tags],
             200,
             [],
-            ['groups' => ['tag', 'competitions.tagId']]
+            ['groups' => ['tag', 'competition.tagId']]
             
             );
         if ($request->getMethod() == 'OPTIONS') {
@@ -58,7 +58,7 @@ class TagController extends Controller
     /**
      * @Route("/tag/list", name="tag_list")
      */
-    public function brandList()
+    public function tagList()
     {
         return $this->render(
             'Tag/List.html.twig',
