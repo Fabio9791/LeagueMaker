@@ -14,6 +14,7 @@ use App\Entity\MatchDay;
 use App\Entity\Encounter;
 use App\Entity\Score;
 use App\Entity\Tag;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class CompetitionController extends Controller
 {
@@ -23,7 +24,7 @@ class CompetitionController extends Controller
      *
      * @Route("/competition/create", name="create_competition", methods={"GET", "POST"})
      */
-    public function createCompetition(Request $request, Session $session, ObjectManager $manager, MatchupGenerator $generator)
+    public function createCompetition(Request $request, Session $session, ObjectManager $manager, UserInterface $user, MatchupGenerator $generator)
     {
         if ($_SERVER['REQUEST_METHOD'] != 'POST')
             return $this->render('Competition/create.html.twig', [
@@ -49,7 +50,8 @@ class CompetitionController extends Controller
 
             $competition = new Competition();
             $competition->setStatusId($status);
-            // $competition->setUser($user);
+            //$user = $manager->getRepository();
+            $competition->setUser($user);
             $competition->setLocation($location);
             $competition->setName($name);
             $competition->setCreationDate($date);
