@@ -60,12 +60,18 @@ class Competition
      */
     private $location;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MatchDay", mappedBy="competition", orphanRemoval=true)
+     */
+    private $matchDays;
+
     public function __construct()
     {
         $this->userId = new ArrayCollection();
         $this->tagId = new ArrayCollection();
         $this->encounters = new ArrayCollection();
         $this->competitors = new ArrayCollection();
+        $this->matchDays = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -217,6 +223,37 @@ class Competition
     public function setLocation(?string $location): self
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MatchDay[]
+     */
+    public function getMatchDays(): Collection
+    {
+        return $this->matchDays;
+    }
+
+    public function addMatchDay(MatchDay $matchDay): self
+    {
+        if (!$this->matchDays->contains($matchDay)) {
+            $this->matchDays[] = $matchDay;
+            $matchDay->setCompetition($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatchDay(MatchDay $matchDay): self
+    {
+        if ($this->matchDays->contains($matchDay)) {
+            $this->matchDays->removeElement($matchDay);
+            // set the owning side to null (unless already changed)
+            if ($matchDay->getCompetition() === $this) {
+                $matchDay->setCompetition(null);
+            }
+        }
 
         return $this;
     }

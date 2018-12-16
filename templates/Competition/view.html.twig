@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>pos</th>
+				<th>name</th>
+				<th>points</th>
+				<th>scored</th>
+				<th>got scored</th>
+				<th>score diff</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for competitor in table %}
+				<tr>
+					<td>{{ loop.index+1 }}</td>
+					<td>{{ competitor[0] }}</td>
+					<td>{{ competitor[1] }}</td>
+					<td>{{ competitor[2] }}</td>
+					<td>{{ competitor[3] }}</td>
+					<td>{{ competitor[2]-competitor[3] }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% for matchday in table2 %}
+	<h3>{{ matchday[0] }}</h3>
+	<table>
+		<tbody>
+			<tr>
+			{% for encounter in table2[i][1]  %}
+				<td>{{ encounter[0] }}</td>
+				<td>{{ encounter[1] }}</td>
+				<td>{{ encounter[2] }}</td>
+				<td>{{ encounter[3] }}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+
+{% endblock %}
