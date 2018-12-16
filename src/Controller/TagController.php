@@ -25,7 +25,7 @@ class TagController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $repository = $manager->getRepository(Tag::class);
         $pattern = $request->query->get('pattern');
-        $tags = $repository->findByNameLike($pattern);
+        $tags = $repository->findByLabelLike($pattern);
         $response = $this->json(
             ['data' => $tags],
             200,
