@@ -50,11 +50,6 @@ class Competition
     private $competitors;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $homeVisitor;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="competitions")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -198,18 +193,6 @@ class Competition
                 $competitor->setCompetitionId(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getHomeVisitor(): ?bool
-    {
-        return $this->homeVisitor;
-    }
-
-    public function setHomeVisitor(bool $homeVisitor): self
-    {
-        $this->homeVisitor = $homeVisitor;
 
         return $this;
     }

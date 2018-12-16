@@ -25,7 +25,11 @@ class AboutController extends Controller
     public function about()
     {
         $theMachine = new MatchupGenerator();
-        $encounters = $this->theGenerator($theMachine); 
-        return $this->render('about.html.twig',['encounters' => $encounters]);
+        $league = $this->theGenerator($theMachine); 
+        $request='fabio is the best';
+        return $this->render('about.html.twig',[
+            'league' => $league,
+            'request' => $request
+        ]);
     }
 }

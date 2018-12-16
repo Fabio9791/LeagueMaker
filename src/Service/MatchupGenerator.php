@@ -9,7 +9,7 @@ class MatchupGenerator
         $encounters = [];
         $matchDay = [];
         if (sizeof($array) % 2 != 0) {
-            array_push($array, 666);
+            array_push($array, null);
         }
         shuffle($array);
         $loopMax = sizeof($array) - 1;
@@ -136,7 +136,7 @@ class MatchupGenerator
             $grpEncounters = [];
             for ($j = 0; $j < ceil(sizeof($array) / $grpNmb); $j ++) {
                 array_push($grpEncounters, $array[$index]);
-                $index++;
+                $index ++;
             }
             array_push($encounter, $grpEncounters);
         }
@@ -144,11 +144,23 @@ class MatchupGenerator
             $grpEncounters = [];
             for ($j = 0; $j < floor(sizeof($array) / $grpNmb); $j ++) {
                 array_push($grpEncounters, $array[$index]);
-                $index++;
+                $index ++;
             }
             array_push($encounter, $grpEncounters);
         }
         return $encounter;
+    }
+
+    public function allElementsUnique(array $array): bool
+    {
+        for($i=0;$i<sizeof($array)-1;$i++){
+            for($j=$i+1;$j<sizeof($array);$j++){
+                if($array[$i]===$array[$j]){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
 
