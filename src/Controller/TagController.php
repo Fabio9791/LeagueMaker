@@ -8,11 +8,7 @@ use App\Entity\Tag;
 
 class TagController extends Controller
 {
-    /**
-     * Search by tags
-     * 
-     * @Route("/competition/search", name="search_competition", methods={"GET", "OPTIONS"})
-     */
+
     public function search(Request $request)
     {
         if (!$request->query->has('pattern')) {
