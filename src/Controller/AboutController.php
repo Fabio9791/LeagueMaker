@@ -27,10 +27,8 @@ class AboutController extends Controller
         $theMachine = new MatchupGenerator();
         $league = $this->theGenerator($theMachine); 
         $request='fabio is the best';
-        $session;
         return $this->render('about.html.twig',[
             'league' => $league,
-            'session' => $session,
             'request' => $request
         ]);
     }
