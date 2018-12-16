@@ -15,19 +15,16 @@ class Competition
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="UUID")
      * @ORM\Column(type="guid")
-     * @Groups({"competition", "competition.id"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"competition", "competition.name"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"competition", "competition.creationDate"})
      */
     private $creationDate;
 

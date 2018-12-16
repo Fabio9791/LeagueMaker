@@ -8,14 +8,13 @@ use App\Entity\Tag;
 
 class TagController extends Controller
 {
-
     public function search(Request $request)
     {
         if (!$request->query->has('pattern')) {
             return new JsonResponse(
                 ['errors' => ['Unspecified pattern']],
                 400
-            );
+                );
         }
         
         $manager = $this->getDoctrine()->getManager();
@@ -29,7 +28,7 @@ class TagController extends Controller
             200,
             [],
             ['groups' => ['tag', 'competition.name']]
-        );
+            );
         
         if ($request->getMethod() == 'OPTIONS') {
             $response->setContent('');
@@ -38,4 +37,3 @@ class TagController extends Controller
         return $response;
     }
 }
-
