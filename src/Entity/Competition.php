@@ -15,16 +15,19 @@ class Competition
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="UUID")
      * @ORM\Column(type="guid")
+     * @Groups({"competition", "competition.id"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"competition", "competition.name"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"competition", "competition.creationDate"})
      */
     private $creationDate;
 
@@ -67,7 +70,7 @@ class Competition
 
     public function __construct()
     {
-        $this->userId = new ArrayCollection();
+        $this->user = new ArrayCollection();
         $this->tagId = new ArrayCollection();
         $this->encounters = new ArrayCollection();
         $this->competitors = new ArrayCollection();

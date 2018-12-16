@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Competition;
 use App\Form\CompetitionFormType;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class CompetitionController extends Controller
 {
@@ -15,23 +16,19 @@ class CompetitionController extends Controller
      * 
      * @Route("/competition/create", name="create_competition", methods={"GET", "POST"})
      */
-    public function createCompetition(Request $request, Session $session)
+    public function createCompetition(Request $request) : Response
     {
-        $competition = new Competition();
-        $form = $this->createForm(CompetitionFormType::class, $competition, ['standalone' => true]);
-        
+        $form = $this->createForm(CompetitionFormType::class);
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($competition);
-            $manager->flush();
-            
-            $session->getFlashBag()->add('success', 'The competition was created');
-            
-            return $this->redirectToRoute('homepage');
+            $competitionDTO = $form->getData();
+            var_dump($competitionDTO);
         }
         
-        return $this->render('Competition/create.html.twig', ['formObj' => $form->createView()]);
+        return $this->render('Competition/create.html.twig', [
+            'formObj' => $form->createView()
+        ]);
     }
 }
 

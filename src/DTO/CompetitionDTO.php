@@ -1,13 +1,15 @@
 <?php
 namespace App\DTO;
 
-class createCompetition
+
+
+class CompetitionDTO
 {
     public $name;
     public $homeVisitor;
     public $location;
-    public $tag = [];
-    public $competitor = [];
+    public $tag;
+    public $competitor;
     
     /**
      * @return mixed
