@@ -5,9 +5,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Competition;
-use App\Form\CompetitionFormType;
 use Symfony\Component\Routing\Annotation\Route;
-use App\DTO\createCompetition;
+use App\Entity\Status;
+use Doctrine\Common\Persistence\ObjectManager;
+use App\Entity\Competitor;
+use App\Service\MatchupGenerator;
+use App\Entity\MatchDay;
+use App\Entity\Encounter;
+use App\Entity\Score;
+use App\Entity\Tag;
 
 class CompetitionController extends Controller
 {
@@ -17,23 +23,112 @@ class CompetitionController extends Controller
      *
      * @Route("/competition/create", name="create_competition", methods={"GET", "POST"})
      */
-    public function createCompetition(Request $request, Session $session)
+    public function createCompetition(Request $request, Session $session, ObjectManager $manager, MatchupGenerator $generator)
     {
         if ($_SERVER['REQUEST_METHOD'] != 'POST')
-        return $this->render('Competition/create.html.twig', [
-            'request' => $request
-        ]);
-        
+            return $this->render('Competition/create.html.twig', [
+                'request' => $request
+            ]);
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $encounters = 'fabio is the best';
-            $competition = new createCompetition();
-            $competition->name = $request->request->get('name');
-            $competition->name = $request->request->get('location');
-            $solution = $_POST;
+            // //////////////////////////////////////////////
+            // validation on these
+            $name = $request->request->get('name');
+            $location = $request->request->get('location');
+            $competitorData = intval($request->request->get('competitorData'));
+            $competitorNames = [];
+            for ($i = 1; $i <= $competitorData; $i ++) {
+                $competitorInput = 'competitor' . $i;
+                $competitorName = $request->request->get($competitorInput);
+                array_push($competitorNames, $competitorName);
+            }
+            // ///////////////////////////////////////////////
+
+            $date = new \DateTime();
+            $status = $manager->getRepository(Status::class)->findOneByLabel('Ongoing');
+
+            $competition = new Competition();
+            $competition->setStatusId($status);
+            // $competition->setUser($user);
+            $competition->setLocation($location);
+            $competition->setName($name);
+            $competition->setCreationDate($date);
+            $manager->persist($competition);
+
+            $nameTag = $manager->getRepository(Tag::class)->findOneByLabel($name);
+            if ($nameTag == null) {
+                $nameTag = new Tag();
+                $nameTag->setLabel($name);
+                $nameTag->addCompetition($competition);
+                $manager->persist($nameTag);
+            }
+
+            $LocationTag = $manager->getRepository(Tag::class)->findOneByLabel($location);
+            if ($LocationTag == null) {
+                $LocationTag = new Tag();
+                $LocationTag->setLabel($location);
+                $LocationTag->addCompetition($competition);
+                $manager->persist($LocationTag);
+            }
+
+            $tagData = intval($request->request->get('competitorData'));
+            for ($i = 1; $i <= $tagData; $i ++) {
+                $tagInput = 'tag' . $i;
+                if ($request->request->get($tagInput) != '') {
+                    $tagLabel = $request->request->get($tagInput);
+                    $tag = new Tag();
+                    $tag->setLabel($tagLabel);
+                    $tag->addCompetition($competition);
+                    $manager->persist($tag);
+                }
+            }
+
+            $competitors = [];
+            for ($i = 1; $i <= $competitorData; $i ++) {
+                $competitor = new Competitor();
+                $competitorInput = 'competitor' . $i;
+                $name = $request->request->get($competitorInput);
+                $competitor->setName($name);
+                $manager->persist($competitor);
+                array_push($competitors, $competitor);
+            }
+
+            $league = $generator->createLeague($competitors);
+            if ($request->request->get('homeVisitor') != null) {
+                $league = $generator->homeVisitor($league);
+            }
+
+            for ($i = 1; $i <= sizeof($league); $i ++) {
+                $matchDay = new MatchDay();
+                $matchDay->setLabel('Match Day ' . $i);
+                $manager->persist($matchDay);
+
+                for ($j = 0; $j < sizeof($league[$i - 1]); $j ++) {
+                    $encounter = new Encounter();
+                    $encounter->setMatchDay($matchDay);
+                    $encounter->setCompetitionId($competition);
+
+                    $score1 = new Score();
+                    $score1->setEncounterId($encounter);
+                    $score1->setCompetitorId($league[$i - 1][$j][0]);
+
+                    $score2 = new Score();
+                    $score2->setEncounterId($encounter);
+                    $score2->setCompetitorId($league[$i - 1][$j][1]);
+
+                    if ($league[$i - 1][$j][1] != null && $league[$i - 1][$j][0] != null) {
+                        $manager->persist($encounter);
+                        $manager->persist($score1);
+                        $manager->persist($score2);
+                    }
+                }
+            }
+            // $manager->flush();
+
             return $this->render('about.html.twig', [
                 'request' => $request,
-                'encounters' => $encounters,
-                'solution' => $solution
+                'session' => $session,
+                'league' => $league
             ]);
         }
     }
