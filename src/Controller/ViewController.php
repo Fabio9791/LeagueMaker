@@ -118,4 +118,12 @@ class ViewController extends Controller
             'table2' => $table2
         ]);
     }
+    
+    public function competitionList()
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $competitions = $manager->getRepository(Competition::class)->findAllbyUser();
+        
+        return $this->render('Competition/list.html.twig', ['competitions' => $competitions]);
+    }
 }

@@ -6,19 +6,25 @@
 
 	<section>
 		{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-			<div class="container">
-				<div id="information">
-        			<p>Create a competition of any kind wherever you are arround the world!</p>
-        			<a href="{{ path("fos_user_security_login") }}">
-        				<button type="button" class="btn btn-primary">Log in to create a competition</button>
-        			</a>
-    			</div>
+			<div class="container" id="information">
+    			<h3>LeagueMaker facilitates the creation of competitions</h3>
+    			<ul>
+    				<li>The organizer <b>creates his competition online.</b></li>
+    				<li>Players <b>register via LeagueMaker</b> for the competition.</li>
+    				<li>Generation of an <b>optimized</b> format for the pleasure of all players.</li>
+    				<li>Players enter their <b>own results</b>. The organizer moderates if necessary.</li>
+    				<li>Ranking is <b>generated on LeagueMaker.</b></li>
+    			</ul>
+    			<a href="{{ path("fos_user_security_login") }}">
+    				<button type="button" class="btn btn-primary btn-lg">Log in to create a competition</button>
+    			</a>
 			</div>
 		{% endif %}
 	</section>
 
     <section id="search">
     	<div class="container">
+        	<hr>
     		<div id="imaginary_container">
     			<div class="input-group stylish-input-group">
     				<input type="text" class="form-control" placeholder="Search competition" id="tagSearch">
@@ -42,72 +48,41 @@
         		<hr>
         		<h1>My Competitions</h1>
         		
-        		<div class="row create">
-    				<div class="col-sm-12 formComp">
-            			<table class="table">
-                    		<thead>
-                    			<tr>
-                    				<th>Name</th>
-                    				<th>Event date</th>
-                    			</tr>
-                    		</thead>
-                    		<tbody>
-        
-                    		</tbody>
-                    	</table>
-                	</div>
-            	</div>
+        		{% block section %}
+        		
+        			{% include 'Competition/list.html.twig' %}
+        		
+        		{% endblock %}
+        		
         	</div>
     	{% endif %}
     </section>
     
     <main class="container">
-    <hr>
-    <section class="container carta">
-    	<div class="row">
-    		<div class="col-sm-6 cardCreate">
-    			<div class="news">
-    				<div class="img-figure">
-    					<img
-    						src=""
-    						class="img-responsive">
-    				</div>
-    
-    				<div class="title">
-    					<h1>CREATE COMPETITION</h1>
-    				</div>
-    				<p class="description">Create competition and play.</p>
-    
-    				<p class="more">
-    					<a href="#">SEE MORE</a><i class="fa fa-angle-right"
-    						aria-hidden="true"></i>
-    				</p>
-    			</div>
-    
-    		</div>
-    		<div class="col-sm-6 cardManage">
-    			<div class="news">
-    				<div class="img-figure">
-    					<img
-    						src=""
-    						class="img-responsive">
-    				</div>
-    
-    				<div class="title">
-    					<h1>VIEW AND MANAGE</h1>
-    				</div>
-    				<p class="description">Manage your competition.</p>
-    
-    				<p class="more">
-    					<a href="#">SEE MORE</a><i class="fa fa-angle-right"
-    						aria-hidden="true"></i>
-    				</p>
-    			</div>
-    
-    		</div>
-    	</div>
-    </section>
-    <hr>
+    	<hr>
+        <div class="card-deck">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Past competitions</h5>
+              <p class="card-text">Display of the last 5 competitions that are over.</p>
+    	        {# {% for i in competitions[]|slice(i, 4) %} 
+    	        	{% endfor %} #}
+            </div>
+            <div class="card-footer">
+            	<button type="button" class="btn btn-primary btn-sm">Show all</button>            				
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ongoing competitions</h5>
+              <p class="card-text">Display of the five ongoing competitions.</p>
+            </div>
+            <div class="card-footer">
+				<button type="button" class="btn btn-primary btn-sm">Show all</button>
+            </div>
+          </div>
+        </div>
+    	<hr>
     </main>
     
 {% endblock %}

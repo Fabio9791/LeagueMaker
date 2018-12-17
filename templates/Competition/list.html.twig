@@ -1,5 +1,3 @@
-{% extends 'base.html.twig' %}
-
 {% block body %}
 
 	<table class="table">
@@ -7,17 +5,13 @@
 			<tr>
 				<th>Name</th>
 				<th>Event date</th>
-				<th>Number of players</th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for competition in competitions %}
 				<tr>
-					<td>{{ competition.getName() }}</td>
-					<td>{{ competition.getEventDate() }}</td>
-					<td>{{ competition.getNumberOfPlayers() }}</td>
+					<td></td>
+					<td></td>
 				</tr>
-			{% endfor %}
 		</tbody>
 	</table>
 
