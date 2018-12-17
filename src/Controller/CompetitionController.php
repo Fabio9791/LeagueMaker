@@ -30,5 +30,16 @@ class CompetitionController extends Controller
             'formObj' => $form->createView()
         ]);
     }
+    
+    /**
+     * @Route("/competition/list", name="competition_list")
+     */
+    public function competitionList()
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $competitionList = $manager->getRepository(Competition::class)->findAll();
+        
+        return $this->render('Competition/list.html.twig', ['competitions' => $competitionList]);
+    }
 }
 

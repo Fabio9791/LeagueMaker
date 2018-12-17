@@ -266,6 +266,10 @@ footer {
 	color: white;
 }
 
-#loginForm form {
+#loginForm form input {
 	display: block;
+}
+
+#remember_me {
+	margin-top: 10px;
 }
