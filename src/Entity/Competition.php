@@ -67,7 +67,7 @@ class Competition
 
     public function __construct()
     {
-        $this->userId = new ArrayCollection();
+        $this->user = new ArrayCollection();
         $this->tagId = new ArrayCollection();
         $this->encounters = new ArrayCollection();
         $this->competitors = new ArrayCollection();
