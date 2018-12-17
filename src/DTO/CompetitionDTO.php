@@ -80,7 +80,7 @@ class CompetitionDTO
      */
     public function setTag($tag)
     {
-        $this->tag = $tag;
+        array_push($this->tag,$tag);
     }
 
     /**
@@ -88,7 +88,7 @@ class CompetitionDTO
      */
     public function setCompetitor($competitor)
     {
-        $this->competitor = $competitor;
+        array_push($this->competitor,$competitor);
     }
 
     
