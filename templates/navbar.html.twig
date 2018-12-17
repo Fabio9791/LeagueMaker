@@ -19,8 +19,8 @@
       		{% endif %}
       		
       		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-      		<li class="nav-item">
-        		<a class="nav-link" href="{{ path("logout") }}">{{ 'Logout'|trans }}</a>
+      		<li class="nav-item{% if route == 'fos_user_security_logout' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path("fos_user_security_logout") }}">{{ 'Logout'|trans }}</a>
       		</li>
       		{% endif %}
       		
