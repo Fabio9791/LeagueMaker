@@ -31,6 +31,11 @@ main {
     color: #ffffff;
 }
 
+#image {
+	width: 70px;
+	height: 70px;
+}
+
 .navbar {
     background-color: #455050;
 }
@@ -68,10 +73,6 @@ p, h2, h3 {
 #competition_form label{
 	margin-right: 1rem;
 	font-size: 1.2rem;
-}
-
-#competition_form input {
-	
 }
 
 #competition_form_submit{
