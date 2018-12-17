@@ -12,13 +12,13 @@ class ViewController extends Controller
 
     /**
      *
-     * @Route("/competition/view", name="view_competition")
+     * @Route("/competition/view", name="view_competition", methods={"GET", "POST"})
      */
     public function viewCompetition(Request $request, ObjectManager $manager)
     {
         
-        $competitionName = $request->attributes->get('name');
-        $competition = $manager->getRepository(Competition::class)->findOneByName($competitionName);
+        //$competitionName = $request->attributes->get('name');
+        $competition = $manager->getRepository(Competition::class)->findOneByName('Ultimate Tournament');
         $competitors = $competition->getCompetitors();
         
         $table = [];

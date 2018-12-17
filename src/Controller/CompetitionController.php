@@ -127,7 +127,7 @@ class CompetitionController extends Controller
                 for ($i = 1; $i <= sizeof($league); $i ++) {
                     $matchDay = new MatchDay();
                     $matchDay->setLabel('Match Day ' . $i);
-                    $matchDay->getCompetition($competition);
+                    $matchDay->setCompetition($competition);
                     $manager->persist($matchDay);
 
                     for ($j = 0; $j < sizeof($league[$i - 1]); $j ++) {
@@ -152,7 +152,7 @@ class CompetitionController extends Controller
                 }
                 $manager->flush();
 
-                return $this->render('Competition/view.html.twig/{'.$competition->getName().'}');
+                return $this->render('homepage.html.twig');
             }
 
             return $this->render('Competition/create.html.twig', [
