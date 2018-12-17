@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Competition;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Status;
@@ -14,7 +13,6 @@ use App\Entity\MatchDay;
 use App\Entity\Encounter;
 use App\Entity\Score;
 use App\Entity\Tag;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class CompetitionController extends Controller
 {
@@ -24,7 +22,7 @@ class CompetitionController extends Controller
      *
      * @Route("/competition/create", name="create_competition", methods={"GET", "POST"})
      */
-    public function createCompetition(Request $request, Session $session, ObjectManager $manager, MatchupGenerator $generator)
+    public function createCompetition(Request $request, ObjectManager $manager, MatchupGenerator $generator)
     {
         
         if ($request->request->count()==0){
@@ -129,6 +127,7 @@ class CompetitionController extends Controller
                 for ($i = 1; $i <= sizeof($league); $i ++) {
                     $matchDay = new MatchDay();
                     $matchDay->setLabel('Match Day ' . $i);
+                    $matchDay->setCompetition($competition);
                     $manager->persist($matchDay);
 
                     for ($j = 0; $j < sizeof($league[$i - 1]); $j ++) {
@@ -153,11 +152,7 @@ class CompetitionController extends Controller
                 }
                 $manager->flush();
 
-                return $this->render('about.html.twig', [
-                    'request' => $request,
-                    'error' => $error,
-                    'league' => $league
-                ]);
+                return $this->render('homepage.html.twig');
             }
 
             return $this->render('Competition/create.html.twig', [

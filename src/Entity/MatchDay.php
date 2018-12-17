@@ -28,6 +28,12 @@ class MatchDay
      */
     private $encounter;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Competition", inversedBy="matchDays")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $competition;
+
     public function __construct()
     {
         $this->encounter = new ArrayCollection();
@@ -77,6 +83,18 @@ class MatchDay
                 $encounter->setMatchDay(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCompetition(): ?Competition
+    {
+        return $this->competition;
+    }
+
+    public function setCompetition(?Competition $competition): self
+    {
+        $this->competition = $competition;
 
         return $this;
     }
