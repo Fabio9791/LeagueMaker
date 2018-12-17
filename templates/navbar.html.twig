@@ -5,7 +5,7 @@
 			{% set route = app.request.get('_route') %}
 
   			<li class="nav-item{% if route == 'about' %} active{% endif %}">
-        		<a class="nav-link" href="{{ path("about") }}">About</a>
+        		<a class="nav-link" href="{{ path("about") }}">{{ 'About'|trans }}</a>
       		</li>
       		
       		{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
