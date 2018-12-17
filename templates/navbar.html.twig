@@ -3,11 +3,11 @@
 	<div>
 		<ul style="display:flex">
 			{% set route = app.request.get('_route') %}
-			
-			<li class="nav-item{% if route == 'create_competition' %} active{% endif %}">
-				<a class="nav-link" href="{{ path('create_competition') }}">{{ 'Create a competition'|trans }}</a>
-			</li>
 
+  			<li class="nav-item{% if route == 'about' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path("about") }}">About</a>
+      		</li>
+      		
       		{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
       		<li class="nav-item{% if route == 'fos_user_registration_register' %} active{% endif %}">
         		<a class="nav-link" href="{{ path('fos_user_registration_register') }}">{{ 'Register'|trans }}</a>
@@ -19,14 +19,17 @@
       		{% endif %}
       		
       		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      		<li class="nav-item{% if route == 'create_competition' %} active{% endif %}">
+				<a class="nav-link" href="{{ path('create_competition') }}">{{ 'Create a competition'|trans }}</a>
+			</li>
+			{% endif %}
+      		
+      		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
       		<li class="nav-item{% if route == 'fos_user_security_logout' %} active{% endif %}">
         		<a class="nav-link" href="{{ path("fos_user_security_logout") }}">{{ 'Logout'|trans }}</a>
       		</li>
       		{% endif %}
       		
-  			<li class="nav-item{% if route == 'about' %} active{% endif %}">
-        		<a class="nav-link" href="{{ path("about") }}">About</a>
-      		</li>
     	</ul>
   	</div>
 </nav>
