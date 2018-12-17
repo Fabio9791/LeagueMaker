@@ -40,6 +40,11 @@ main {
     background-color: #455050;
 }
 
+.navbar ul li a:hover {
+	background-color: rgb(184, 5, 5);
+	border: 3px solid rgb(184, 5, 5);
+}
+
 p, h2, h3 {
     color: #ffffff;
     text-shadow: rgb(184, 5, 5) 2px 2px 3px;
