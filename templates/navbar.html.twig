@@ -3,30 +3,33 @@
 	<div>
 		<ul style="display:flex">
 			{% set route = app.request.get('_route') %}
-			
-			<li class="nav-item{% if route == 'create_competition' %} active{% endif %}">
-				<a class="nav-link" href="{{ path('create_competition') }}">Create a competition</a>
-			</li>
 
-      		{% if not is_granted('ROLE_AUTHENTICATED_FULLY') %}
+  			<li class="nav-item{% if route == 'about' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path("about") }}">{{ 'About'|trans }}</a>
+      		</li>
+      		
+      		{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
       		<li class="nav-item{% if route == 'fos_user_registration_register' %} active{% endif %}">
-        		<a class="nav-link" href="{{ path('fos_user_registration_register') }}">Register</a>
+        		<a class="nav-link" href="{{ path('fos_user_registration_register') }}">{{ 'Register'|trans }}</a>
       		</li>
       		
       		<li class="nav-item{% if route == 'fos_user_security_login' %} active{% endif %}">
-        		<a class="nav-link" href="{{ path("fos_user_security_login") }}">Login</a>
+        		<a class="nav-link" href="{{ path("fos_user_security_login") }}">{{ 'Login'|trans }}</a>
       		</li>
       		{% endif %}
       		
-      		{% if is_granted('ROLE_AUTHENTICATED_FULLY') %}
-      		<li class="nav-item{% if route == 'logout' %} active{% endif %}">
-        		<a class="nav-link" href="{{ path("logout") }}">Logout</a>
+      		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      		<li class="nav-item{% if route == 'create_competition' %} active{% endif %}">
+				<a class="nav-link" href="{{ path('create_competition') }}">{{ 'Create a competition'|trans }}</a>
+			</li>
+			{% endif %}
+      		
+      		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      		<li class="nav-item{% if route == 'fos_user_security_logout' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path("fos_user_security_logout") }}">{{ 'Logout'|trans }}</a>
       		</li>
       		{% endif %}
       		
-  			<li class="nav-item{% if route == 'about' %} active{% endif %}">
-        		<a class="nav-link" href="{{ path("about") }}">About</a>
-      		</li>
     	</ul>
   	</div>
 </nav>

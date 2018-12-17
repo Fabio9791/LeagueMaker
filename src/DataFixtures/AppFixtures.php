@@ -49,7 +49,6 @@ class AppFixtures extends Fixture
         // Competition
         $competition = new Competition();
         $competition->setName('Ultimate Tournament');
-        $competition->setHomeVisitor(false);
         $competition->setLocation('Bettembourg');
         $date = new \DateTime();
         $competition->setCreationDate($date);
@@ -91,6 +90,7 @@ class AppFixtures extends Fixture
         // Match day 1
         $matchDay = new MatchDay();
         $matchDay->setLabel('Match Day 1');
+        $matchDay->setCompetition($competition);
         $manager->persist($matchDay);
 
         // Encounter 1
@@ -133,6 +133,7 @@ class AppFixtures extends Fixture
         // Match day 2
         $matchDay = new MatchDay();
         $matchDay->setLabel('Match Day 2');
+        $matchDay->setCompetition($competition);
         $manager->persist($matchDay);
         
         // Encounter 1
@@ -175,6 +176,7 @@ class AppFixtures extends Fixture
         // match day 3
         $matchDay = new MatchDay();
         $matchDay->setLabel('Match Day 3');
+        $matchDay->setCompetition($competition);
         $manager->persist($matchDay);
         
         // Encounter 1
