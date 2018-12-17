@@ -36,34 +36,4 @@ class TagController extends Controller
         }
         return $response;
     }
-    
-    /**
-     * @Route("/tag/create", name="create_tag")
-     */
-    public function createBrand(Request $request)
-    {
-        $tags = new Tag();
-        $form = $this->createForm(TagFormType::class, $tags, ['standalone' => true]);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($tags);
-            $manager->flush();
-            return $this->redirectToRoute('tag_list');
-        }
-        return $this->render('Tag/create.html.twig', ['formObj' => $form->createView()]);
-    }
-    /**
-     * @Route("/tag/list", name="tag_list")
-     */
-    public function tagList()
-    {
-        return $this->render(
-            'Tag/List.html.twig',
-            [
-                'tags' => $this->getDoctrine()->getRepository(Tag::class)->findAll()
-            ]
-            );
-    }
-    
 }

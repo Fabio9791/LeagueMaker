@@ -32,7 +32,7 @@ class Tag
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Competition", mappedBy="tagId")
-     * @Groups({"tag", "tag.competitionId"})
+     * @Groups({"tag", "tag.competitions"})
      */
     private $competitions;
 

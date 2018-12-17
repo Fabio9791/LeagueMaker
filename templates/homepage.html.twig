@@ -4,108 +4,99 @@
 
 {% block body %}
 
-<section>
-	<div class="container">
-		<div id="imaginary_container">
-			<div class="input-group stylish-input-group">
-				<input type="text" class="form-control" placeholder="Search" id="competitionSearch">
-				<button type="button" class="btn btn-success" id="competitionSearchButton">Search</button>
-			</div>
-		</div>
-	</div>
-	
-	<div id="search">
-		
-	</div>
-</section>
-
-<section>
-	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <section id="search">
     	<div class="container">
-    		<hr>
-    		<h1>My Competitions</h1>
+    		<div id="imaginary_container">
+    			<div class="input-group stylish-input-group">
+    				<input type="text" class="form-control" placeholder="Search competition" id="tagSearch">
+    				<button type="submit" class="btn btn-success" id="tagSearchButton">Search</button>
+    			</div>
+    		</div>
     	</div>
-	{% endif %}
-</section>
-
-<main class="container">
-<section class="row create">
-	<div class="col-sm-12 formComp">
-		<ul id="searchResults">
-	
-		</ul>	
-	</div>
-</section>
-<hr>
-<section class="container carta">
-	<div class="row">
-		<div class="col-sm-4 cardCreate">
-			<div class="news">
-				<div class="img-figure">
-					<img
-						src=""
-						class="img-responsive">
-				</div>
-
-				<div class="title">
-					<h1>CREATE COMPETITION</h1>
-				</div>
-				<p class="description">Create competition and play.</p>
-
-				<p class="more">
-					<a href="#">SEE MORE</a><i class="fa fa-angle-right"
-						aria-hidden="true"></i>
-				</p>
-			</div>
-
-
-		</div>
-		<div class="col-sm-4 cardManage">
-			<div class="news">
-				<div class="img-figure">
-					<img
-						src=""
-						class="img-responsive">
-				</div>
-
-				<div class="title">
-					<h1>VIEW AND MANAGE</h1>
-				</div>
-				<p class="description">Manage your competition.</p>
-
-				<p class="more">
-					<a href="#">SEE MORE</a><i class="fa fa-angle-right"
-						aria-hidden="true"></i>
-				</p>
-			</div>
-
-
-		</div>
-		<div class="col-sm-4 cardInvite">
-			<div class="news">
-				<div class="img-figure">
-					<img
-						src=""
-						class="img-responsive">
-				</div>
-
-				<div class="title">
-					<h1>INVITE YOUR FRIENDS</h1>
-				</div>
-				<p class="description">Invite friends to play with you.</p>
-
-				<p class="more">
-					<a href="#">SEE MORE</a><i class="fa fa-angle-right"
-						aria-hidden="true"></i>
-				</p>
-			</div>
-
-
-		</div>
-	</div>
-</section>
-<hr>
-</main>
+    	
+		<div class="row create" id="searchResults">
+    		<div class="col-sm-12 formComp">
+    			<ul>
+    			
+    			</ul>	
+    		</div>
+    	</div>
+    </section>
+    
+    <section>
+    	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        	<div class="container">
+        		<hr>
+        		<h1>My Competitions</h1>
+        		
+        		<div class="row create">
+    				<div class="col-sm-12 formComp">
+            			<table class="table">
+                    		<thead>
+                    			<tr>
+                    				<th>Name</th>
+                    				<th>Event date</th>
+                    			</tr>
+                    		</thead>
+                    		<tbody>
+        
+                    		</tbody>
+                    	</table>
+                	</div>
+            	</div>
+        	</div>
+    	{% endif %}
+    </section>
+    
+    <main class="container">
+    <hr>
+    <section class="container carta">
+    	<div class="row">
+    		<div class="col-sm-6 cardCreate">
+    			<div class="news">
+    				<div class="img-figure">
+    					<img
+    						src=""
+    						class="img-responsive">
+    				</div>
+    
+    				<div class="title">
+    					<h1>CREATE COMPETITION</h1>
+    				</div>
+    				<p class="description">Create competition and play.</p>
+    
+    				<p class="more">
+    					<a href="#">SEE MORE</a><i class="fa fa-angle-right"
+    						aria-hidden="true"></i>
+    				</p>
+    			</div>
+    
+    		</div>
+    		<div class="col-sm-6 cardManage">
+    			<div class="news">
+    				<div class="img-figure">
+    					<img
+    						src=""
+    						class="img-responsive">
+    				</div>
+    
+    				<div class="title">
+    					<h1>VIEW AND MANAGE</h1>
+    				</div>
+    				<p class="description">Manage your competition.</p>
+    
+    				<p class="more">
+    					<a href="#">SEE MORE</a><i class="fa fa-angle-right"
+    						aria-hidden="true"></i>
+    				</p>
+    			</div>
+    
+    		</div>
+    	</div>
+    </section>
+    <hr>
+    </main>
+    
+{% endblock %}
 
 {% block javascripts %}{{ parent() }}{% endblock %}
-
