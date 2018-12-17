@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
-{% block title %}
-{{ parent() }}
-homepage
-{% endblock %}
 
+{% block title %}{{ parent() }}homepage{% endblock %}
 
 {% block body %}
+
+<section>
+	<div class="container">
+		<div id="imaginary_container">
+			<div class="input-group stylish-input-group">
+				<input type="text" class="form-control" placeholder="Search" id="competitionSearch">
+				<button type="button" class="btn btn-success" id="competitionSearchButton">Search</button>
+			</div>
+		</div>
+	</div>
+	
+	<div id="search">
+		
+	</div>
+</section>
 
     <main class="container">
     <hr>
@@ -82,7 +94,4 @@ homepage
     
 {% endblock %}
 
-
-
-{% block javascripts %}
-{% endblock %}
+{% block javascripts %}{% endblock %}

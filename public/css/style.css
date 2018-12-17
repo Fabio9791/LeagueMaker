@@ -224,8 +224,6 @@ p, h2, h3 {
 footer {
     background-color: #354141;
     box-shadow: 4px 6px rgb(184, 5, 5);
-    position: absolute;
-    bottom: 0;
 } 
 
 #registerTitle {
