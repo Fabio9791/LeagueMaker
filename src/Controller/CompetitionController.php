@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Competition;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Status;
@@ -14,7 +13,6 @@ use App\Entity\MatchDay;
 use App\Entity\Encounter;
 use App\Entity\Score;
 use App\Entity\Tag;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class CompetitionController extends Controller
 {
@@ -24,7 +22,7 @@ class CompetitionController extends Controller
      *
      * @Route("/competition/create", name="create_competition", methods={"GET", "POST"})
      */
-    public function createCompetition(Request $request, Session $session, ObjectManager $manager, MatchupGenerator $generator)
+    public function createCompetition(Request $request, ObjectManager $manager, MatchupGenerator $generator)
     {
         
         if ($request->request->count()==0){

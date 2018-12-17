@@ -1,13 +1,11 @@
 <?php
 namespace App\Controller;
-
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Tag;
 use App\Form\TagFormType;
-
 class TagController extends Controller
 {
     /**
@@ -67,6 +65,5 @@ class TagController extends Controller
             ]
             );
     }
-        
+    
 }
-
