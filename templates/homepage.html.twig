@@ -19,6 +19,15 @@
 	</div>
 </section>
 
+<section>
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    	<div class="container">
+    		<hr>
+    		<h1>My Competitions</h1>
+    	</div>
+	{% endif %}
+</section>
+
     <main class="container">
     <hr>
     <section class="container carta">
