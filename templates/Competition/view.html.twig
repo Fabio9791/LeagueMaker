@@ -16,7 +16,7 @@
 		<tbody>
 			{% for competitor in table %}
 				<tr>
-					<td>{{ loop.index+1 }}</td>
+					<td>{{ loop.index }}</td>
 					<td>{{ competitor[0] }}</td>
 					<td>{{ competitor[1] }}</td>
 					<td>{{ competitor[2] }}</td>
@@ -31,14 +31,15 @@
 	<table>
 		<tbody>
 			<tr>
-			{% for encounter in table2[i][1]  %}
+			{% for encounter in matchday[1]  %}
 				<td>{{ encounter[0] }}</td>
 				<td>{{ encounter[1] }}</td>
 				<td>{{ encounter[2] }}</td>
 				<td>{{ encounter[3] }}</td>
+			{% endfor %}
 			</tr>
 		</tbody>
 	</table>
-	
+	{% endfor %}
 
 {% endblock %}
