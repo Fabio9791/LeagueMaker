@@ -284,3 +284,16 @@ footer {
 #searchResults {
 	display: none;
 }
+
+/*CompetitionView**/
+.table {
+	margin-top: 50px;
+}
+
+.table th {
+	background-color: #D49600;
+}
+
+#matchDays {
+	display: flex;
+}

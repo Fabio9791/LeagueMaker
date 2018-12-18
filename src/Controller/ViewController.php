@@ -112,10 +112,13 @@ class ViewController extends Controller
             }
             array_push($table2[$i],$encountersArray);
         }
-
+        
+        dump($competition->getLocation());
+        
         return $this->render('Competition/view.html.twig', [
             'table' => $table,
-            'table2' => $table2
+            'table2' => $table2,
+            'location' => $competition->getLocation()
         ]);
     }
 }
