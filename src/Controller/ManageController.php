@@ -50,17 +50,16 @@ class ManageController extends Controller
                     } else {
                         $get1 = intval($get1);
                     }
-                    if (($get0 == null && $get1 == null) || ($get1 != null && $get0 != null)) {
+                    if (is_int($get0) && is_int($get1)) {
                         $scores[0]->setScore($get0);
                         $scores[1]->setScore($get1);
                     } else {
-                        $error=true;
+                        $scores[0]->setScore(null);
+                        $scores[1]->setScore(null);
                     }
                 }
             }
-            if ($error === '') {
-                $manager->flush();
-            }
+            $manager->flush();
         }
 
         $matchDays = $competition->getMatchDays();
