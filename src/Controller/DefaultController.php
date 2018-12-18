@@ -30,7 +30,7 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      */
     public function homepage(Request $request, ObjectManager $manager)
-    {
+    { 
         $user = $this->getUser();
         $myCompetitions = $manager->getRepository(Competition::class)->findByUser($user);
 
