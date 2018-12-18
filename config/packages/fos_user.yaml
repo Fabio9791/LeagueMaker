@@ -14,5 +14,5 @@ fos_user:
     registration:
         confirmation: 
             enabled: true          
-            #template:  '@FOSUser/Registration/email.txt.twig' 
+            template:  '@FOSUser/Registration/email.txt.twig' 
         
