@@ -7,7 +7,7 @@ $('#tagSearchButton').on('click', function(){
 				console.log(response);
 				$('#searchResults').css("display", "none");
 				response['data'].forEach(function(element) {
-					$('#searchResults div ul').append('<li>'+element['label']+'</li>');
+					$('#searchResults formComp ul').append('<li>'+element['label']+'</li>');
 					$('#searchResults').css("display", "block");
 				});
 			}

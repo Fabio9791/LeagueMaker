@@ -13,3 +13,4 @@ controllers:
         _locale: en
     requirements: 
         _locale: en|fr 
+

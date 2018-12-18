@@ -39,7 +39,7 @@ class Competitor
         $this->scores = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?String
     {
         return $this->id;
     }

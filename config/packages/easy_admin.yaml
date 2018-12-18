@@ -1,0 +1,27 @@
+easy_admin:
+    site_name: 'LeagueMaker Administration.'              
+    design:
+        brand_color: 'red'
+        assets:
+           css: ['css/customBackend.css']
+        menu: 
+            - { entity: 'User', icon: 'user' }
+            - { entity: 'Competition', icon: 'tag' }
+            - { entity: 'Tag', icon: 'tag' }
+        
+    entities:
+        User:
+            class: App\Entity\User
+            label: 'My Users'
+            list:
+                title: "Most recent Users"
+                fields: ['Username', 'email']
+        Competition:
+            class: App\Entity\Competition
+            list:
+                title: "Most recent Competitions"
+                fields: ['name', 'creation date', 'location']
+        Tag:
+            class: App\Entity\Tag
+            list:
+                title: "Most recent Tags"  
