@@ -39,8 +39,7 @@ p, h2, h3 {
 }
 
  header {
-    margin-bottom: 1rem;
-    box-shadow: 4px 6px rgb(184, 5, 5);
+    height: 71px;
 }
 
 .create{
