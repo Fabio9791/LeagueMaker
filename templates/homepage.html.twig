@@ -46,41 +46,42 @@ homepage
 		</div>
 	</div>
 	{% if tagCompetitions|length > 0  %}
-		<div class="container">
-			<hr>
-            <div class="row create" id="searchResults">
-            	<table class="table">
-        			<thead>
-        				<tr>
-        					<th>Name</th>
-        					<th>Creation date</th>
-        					<th>Status</th>
-        					<th>Location</th>
-        					<th>Creator</th>
-        					<th></th>
-        				</tr>
-        			</thead>
-        			<tbody>
-        				{% for tagCompetition in tagCompetitions %}
-        				<tr>
-        					<td>{{ tagCompetition.getName() }}</td>
-        					<td>{{ tagCompetition.getCreationDate()|date('Y-m-d') }}</td>
-        					<td>{{ tagCompetition.getStatusId().getLabel() }}</td>
-        					<td>{{ tagCompetition.getLocation() }}</td>
-        					<td>{{ tagCompetition.getUser().getUsername() }}</td>
-        					<td><a
-        						href="{{ path("view_competition", {'name':tagCompetition.getName()}) }}">
-        							<button type="button" class="btn btn-primary btn-sm">View</button>
-        					</a></td>
-        				</tr>
-        				{% endfor %}
-        			</tbody>
-        		</table>
-            </div>
-        </div>
-    {% endif %}
+	<div class="container">
+		<hr>
+		<div class="row create" id="searchResults">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Creation date</th>
+						<th>Status</th>
+						<th>Location</th>
+						<th>Creator</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for tagCompetition in tagCompetitions %}
+					<tr>
+						<td>{{ tagCompetition.getName() }}</td>
+						<td>{{ tagCompetition.getCreationDate()|date('Y-m-d') }}</td>
+						<td>{{ tagCompetition.getStatusId().getLabel() }}</td>
+						<td>{{ tagCompetition.getLocation() }}</td>
+						<td>{{ tagCompetition.getUser().getUsername() }}</td>
+						<td><a
+							href="{{ path("view_competition", {'id':tagCompetition.getId()}) }}">
+								<button type="button" class="btn btn-primary btn-sm">View</button>
+						</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	{% endif %}
 </section>
 
+<!-- User competitions -->
 <section>
 	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 	<div class="container">
@@ -106,11 +107,11 @@ homepage
 					<td>{{ myCompetition.getStatusId().getLabel() }}</td>
 					<td>{{ myCompetition.getLocation() }}</td>
 					<td><a
-						href="{{ path("manage_competition", {'name':myCompetition.getName()}) }}">
+						href="{{ path("manage_competition", {'id':myCompetition.getId()}) }}">
 							<button type="button" class="btn btn-success btn-sm">Edit</button>
 					</a></td>
 					<td><a
-						href="{{ path("view_competition", {'name':myCompetition.getName()}) }}">
+						href="{{ path("view_competition", {'id':myCompetition.getId()}) }}">
 							<button type="button" class="btn btn-primary btn-sm">View</button>
 					</a></td>
 				</tr>
@@ -121,34 +122,104 @@ homepage
 	</div>
 	{% endif %}
 </section>
-
+<!-- Display of competitions -->
 <main class="container">
 <hr>
-<div class="card-deck">
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">Past competitions</h5>
-			<p class="card-text">Display of the last 5 competitions that are
-				over.</p>
-			{# {% for i in competitions[]|slice(0, 4) %} {% endfor %} #}
+<div id="competitionDisplay">
+	<section>
+		<h5>Finished competitions</h5>
+		<div class="container">
+			<div class="row create">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Creation date</th>
+							<th>Location</th>
+							<th>Creator</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for finishedCompetition in finishedCompetitions %}
+						<tr>
+							<td>{{ finishedCompetition.getName() }}</td>
+							<td>{{ finishedCompetition.getCreationDate()|date('Y-m-d') }}</td>
+							<td>{{ finishedCompetition.getLocation() }}</td>
+							<td>{{ finishedCompetition.getUser().getUsername() }}</td>
+							<td><a
+								href="{{ path("view_competition", {'id':finishedCompetition.getId()}) }}">
+									<button type="button" class="btn btn-primary btn-sm">View</button>
+							</a></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<div class="card-footer">
-			<button type="button" class="btn btn-primary btn-sm">Show
-				all</button>
+	</section>
+	<section>
+		<h5>Ongoing competitions</h5>
+		<div class="row create">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Creation date</th>
+						<th>Location</th>
+						<th>Creator</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for onGoingCompetition in onGoingCompetitions %}
+					<tr>
+						<td>{{ onGoingCompetition.getName() }}</td>
+						<td>{{ onGoingCompetition.getCreationDate()|date('Y-m-d') }}</td>
+						<td>{{ onGoingCompetition.getLocation() }}</td>
+						<td>{{ onGoingCompetition.getUser().getUsername() }}</td>
+						<td><a
+							href="{{ path("view_competition", {'id':onGoingCompetition.getId()}) }}">
+								<button type="button" class="btn btn-primary btn-sm">View</button>
+						</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
-	</div>
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">Ongoing competitions</h5>
-			<p class="card-text">Display of the five ongoing competitions.</p>
+	</section>
+
+	<section>
+		<h5>Futur competitions</h5>
+		<div class="row create">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Creation date</th>
+						<th>Location</th>
+						<th>Creator</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for futurCompetition in futurCompetitions %}
+					<tr>
+						<td>{{ futurCompetition.getName() }}</td>
+						<td>{{ futurCompetition.getCreationDate()|date('Y-m-d') }}</td>
+						<td>{{ futurCompetition.getLocation() }}</td>
+						<td>{{ futurCompetition.getUser().getUsername() }}</td>
+						<td><a
+							href="{{ path("view_competition", {'id':futurCompetition.getId()}) }}">
+								<button type="button" class="btn btn-primary btn-sm">View</button>
+						</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
-		<div class="card-footer">
-			<button type="button" class="btn btn-primary btn-sm">Show
-				all</button>
-		</div>
-	</div>
+	</section>
 </div>
-<hr>
 </main>
 
 {% endblock %}
