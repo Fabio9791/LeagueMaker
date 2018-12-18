@@ -105,7 +105,7 @@ class CompetitionController extends Controller
                         $tagLabel = $request->request->get($tagInput);
                         if ($tagLabel !== '') {
                             $tag = $manager->getRepository(Tag::class)->findOneByLabel($tagLabel);
-                            if ($LocationTag == null) {
+                            if ($tag == null) {
                                 $tag = new Tag();
                                 $tag->setLabel($tagLabel);
                                 $tag->addCompetition($competition);

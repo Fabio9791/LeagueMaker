@@ -31,8 +31,18 @@ main {
     color: #ffffff;
 }
 
+#image {
+	width: 70px;
+	height: 70px;
+}
+
 .navbar {
     background-color: #455050;
+}
+
+.navbar ul li a:hover {
+	background-color: rgb(184, 5, 5);
+	border: 3px solid rgb(184, 5, 5);
 }
 
 p, h2, h3 {
@@ -46,161 +56,26 @@ p, h2, h3 {
     box-shadow: 4px 6px rgb(184, 5, 5);
 }
 
-.create{
-    padding: 2rem;
-    background-color: #354141;
-    border-radius: 1rem;
-    margin: 2rem auto;
-    width: 50%;
-    box-shadow: 4px 6px rgb(184, 5, 5);
+/**past/on going tables**/
+#competitionDisplay{
+	display: flex;
+	justify-content: space-between;
 }
 
-/**cards**/
-.cardManage, .cardInvite, .cardCreate{
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-    text-align: center;
-   
+h5 {
+	color: black;
 }
 
-.news {
-    background: #354141;
-    position: relative;
-    overflow: hidden;
-    z-index:1;
-    transition: all 0.5s ease;	
-    color: #4A4A4A;
-    border: 1px solid #E8E8E8;
-    border-radius: 0.5rem;
-  }
-  
-  .news:hover{
-    box-shadow: 0px 21px 36px -14px rgba(220,220,220,1);;
-  
-  }
-  
-  
-  .news .img-figure {
-      position: relative;
-  }
-  
-  .news .img-figure img {
-      position: relative;	
-      overflow: hidden;
-      transition: all 1s ease;
-  }
-  
-  .news:hover .img-figure img {
-      transform: scale(1.10);
-  }
-  
-  .news .title {
-      /*padding: 29px 30px;*/
-      padding: 20px 20px;
-      position: absolute;
-      left: 0;
-      background: #fff;
-      width: 100%;
-      height: 100%;
-      transition: all 0.5s ease;	
-  }
-  
-  
-  .news .title {
-    font-size:12px;
-    color:#929292;
-  
-  }
-  .news .title h1 {
-      margin: 10px 0 0;
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 19px;
-      color: #4A4A4A;
-      text-align: left;
-      transition: all 0.5s ease;	
-  }
-  
-  .news:hover .title  {
-      margin-top: -100px;
-      background: #fff;
-      cursor:pointer;
-  }
-  
-  
-  .news:hover .title h1  {
-    color: #0085FF; 
-  }
-  
-  .news  p.description {
-      position: relative;
-      font-weight: normal;
-      line-height: 22px;
-      opacity: 0;
-  
-      text-align: left;
-  
-      padding: 15px 20px 0px 20px;
-      transition: all 0.5s ease;	
-  }
-  
-  .news:hover p.description  {
-      opacity: 1;
-      margin-top: -10px;
-  }
-  
-  p.more {
-      text-align: left;
-      margin-left:20px;
-  }
-  
-  .more a {
-      position: relative;
-      font-size: 13px;
-      margin-top: 30px;
-      display: block;
-      -o-transition: all 0.5s ease;
-      transition: all 0.5s ease;
-      display: inline-block;
-      color: #929292;
-      padding: 6px 16px;
-      border: 1px solid #929292;
-      text-decoration: none;
-  }
-  
-  
-  .news:hover .more a {
-    background:#4A4A4A;
-    color:white;
-  }
-  
-  
-  
-  .cat {
-      background: #DCDCDC;
-      color: #4A4A4A;
-      text-transform: uppercase;
-      position: absolute;
-      left: 0;
-      top: 20px;
-      z-index: 1;
-      padding: 6px 16px;
-      opacity:.8;
-      transition: all 0.5s ease;	
-  }
-  /**form create competition**/
-  form[name=competition_form]{
-  padding: 0.5rem;
-  margin: 0 auto;
-  
-  }
+/**form create competition**/
+form[name=competition_form]{
+padding: 0.5rem;
+margin: 0 auto;
+
+}
+
 #competition_form label{
 	margin-right: 1rem;
 	font-size: 1.2rem;
-}
-
-#competition_form input {
-	
 }
 
 #competition_form_submit{
@@ -211,15 +86,16 @@ p, h2, h3 {
 	font-size: 1.3rem;
 }
 
-  .news:hover .cat{
-    background:#0085FF;
-    color:white;
-  }
+ .news:hover .cat{
+   background:#0085FF;
+   color:white;
+ }
 
-  .carta{
-      padding-right: 0;
-      padding-left: 0;
-  }
+ .carta{
+     padding-right: 0;
+     padding-left: 0;
+ }
+ 
 /**footer**/
 footer {
     background-color: #354141;
@@ -274,11 +150,38 @@ footer {
 	margin-top: 10px;
 }
 
+#userLinks {
+	display: flex;
+	justify-content: space-between;
+}
+
+#userLinks a {
+	color: black;
+}
+
 /**SearchResults**/
 #search {
 	margin-top: 10px;	
 }
 
-#searchResults {
-	display: none;
+/**Information for new users**/
+#information {
+	margin-bottom: 30px;
+	margin-top: 30px;
+	border: 3px solid rgb(184, 5, 5);
+	border-radius: 1rem;
+	padding: 10px;
+	text-align: center;
+}
+
+#information ul {
+	list-style: none;
+}
+
+#information ul li {
+	color: white;
+}
+
+#information ul li b {
+	color: black;
 }

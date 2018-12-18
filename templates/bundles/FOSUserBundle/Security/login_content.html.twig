@@ -23,7 +23,10 @@
                 <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
                 <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
             
-                <input type="submit" class="btn btn-primary btn-block" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            	<div id="userLinks">
+                	<input type="submit" class="btn btn-primary" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                	<a class="nav-link" href="{{ path('fos_user_registration_register') }}">->Register</a>
+                </div>
             </form>
         </div>
     </div>
