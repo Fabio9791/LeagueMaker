@@ -19,6 +19,14 @@ class ViewController extends Controller
         
         //$competitionName = $request->attributes->get('name');
         $competition = $manager->getRepository(Competition::class)->findOneByName('Ultimate Tournament');
+        
+        /* Test doesnt work
+        $locations = new Competition();
+        $location = $locations->getLocation('Ultimate Tournament');
+        
+        var_dump($location);
+        */
+        
         $competitors = $competition->getCompetitors();
         
         $table = [];
@@ -115,7 +123,10 @@ class ViewController extends Controller
 
         return $this->render('Competition/view.html.twig', [
             'table' => $table,
-            'table2' => $table2
+            'table2' => $table2,
+            'location' => var_dump($competition->getLocation())
+            
         ]);
+        
     }
 }

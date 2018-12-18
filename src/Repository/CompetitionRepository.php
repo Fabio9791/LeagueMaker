@@ -22,7 +22,7 @@ class CompetitionRepository extends ServiceEntityRepository
     // /**
     //  * @return Competition[] Returns an array of Competition objects
     //  */
-    /*
+    
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('c')
@@ -34,9 +34,9 @@ class CompetitionRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    
 
-    /*
+    
     public function findOneBySomeField($value): ?Competition
     {
         return $this->createQueryBuilder('c')
@@ -46,5 +46,5 @@ class CompetitionRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }
