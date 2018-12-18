@@ -22,12 +22,7 @@
         {% endblock search_action %}
 
         {% block new_action %}
-            <div class="button-action">
-                <a class="{{ _action.css_class|default('') }}" href="{{ path('easyadmin', _request_parameters|merge({ action: _action.name })) }}" target="{{ _action.target }}">
-                    {% if _action.icon %}<i class="fa fa-{{ _action.icon }}"></i>{% endif %}
-                    {{  ''|trans(_trans_parameters)  }}
-                </a>
-            </div>
+            
         {% endblock new_action %}
         
         {% block table_body %}

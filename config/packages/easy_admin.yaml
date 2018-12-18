@@ -15,7 +15,7 @@ easy_admin:
             label: 'My Users'
             list:
                 title: "Most recent Users"
-                fields: ['Username', 'email']
+                fields: ['Username', 'email']                    
         Competition:
             class: App\Entity\Competition
             list:
