@@ -19,8 +19,9 @@ class ManageController extends Controller
     {
 
         // $competitionName = $request->attributes->get('name');
-        $competition = $manager->getRepository(Competition::class)->findOneByName('Ul');
+        $competition = $manager->getRepository(Competition::class)->findOneByName('Ul7');
         $finished = true;
+        $started = false;
         if ($request->request->count() > 0) {
             $matchDays = $competition->getMatchDays();
             for ($y = 0; $y < sizeof($matchDays) - 1; $y ++) {
@@ -54,6 +55,7 @@ class ManageController extends Controller
                     if (is_int($get0) && is_int($get1)) {
                         $scores[0]->setScore($get0);
                         $scores[1]->setScore($get1);
+                        $started = true;
                     } else {
                         $scores[0]->setScore(null);
                         $scores[1]->setScore(null);
@@ -64,8 +66,11 @@ class ManageController extends Controller
             if ($finished) {
                 $status = $manager->getRepository(Status::class)->findOneByLabel('Finished');
                 $competition->setStatusId($status);
-            } else {
+            } elseif ($started) {
                 $status = $manager->getRepository(Status::class)->findOneByLabel('Ongoing');
+                $competition->setStatusId($status);
+            } else {
+                $status = $manager->getRepository(Status::class)->findOneByLabel('Futur');
                 $competition->setStatusId($status);
             }
             $manager->flush();

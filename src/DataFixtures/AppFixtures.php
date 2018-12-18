@@ -33,7 +33,8 @@ class AppFixtures extends Fixture
     {
         $statusList = [
             'Ongoing',
-            'Finished'
+            'Finished',
+            'Futur'
         ];
 
         foreach ($statusList as $statusLabel) {
