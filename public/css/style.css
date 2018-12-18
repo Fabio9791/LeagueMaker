@@ -298,6 +298,10 @@ footer {
 }
 
 .matchDay {
-	padding-right: 0px;
+	margin-right: 0px;
 	width: 900px;
+}
+
+.marginFix {
+	width: 2px;
 }

@@ -39,10 +39,12 @@
                 		</thead>
                     		<tbody>
                     			{% for encounter in matchday[1]  %}
-                    			<tr class="">
-                    				<td>{{ encounter[0] }}</td>
+                    			<tr>
+                    				<td class="marginFix">{{ encounter[0] }}</td>
                     				<td>{{ encounter[1] }}</td>
+                    				<td> - </td>
                     				<td>{{ encounter[2] }}</td>
+                    				<td>  </td>
                     				<td>{{ encounter[3] }}</td>
                     			</tr>
                     			{% endfor %}
