@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Competition;
+use App\Entity\Status;
 
 class ManageController extends Controller
 {
@@ -16,10 +17,9 @@ class ManageController extends Controller
      */
     public function manageCompetition(Request $request, ObjectManager $manager, string $id)
     {
-
         $competition = $manager->getRepository(Competition::class)->findOneById($id);
-        
-        $error = false;
+        $finished = true;
+        $started = false;
         if ($request->request->count() > 0) {
             $matchDays = $competition->getMatchDays();
             for ($y = 0; $y < sizeof($matchDays) - 1; $y ++) {
@@ -50,17 +50,28 @@ class ManageController extends Controller
                     } else {
                         $get1 = intval($get1);
                     }
-                    if (($get0 == null && $get1 == null) || ($get1 != null && $get0 != null)) {
+                    if (is_int($get0) && is_int($get1)) {
                         $scores[0]->setScore($get0);
                         $scores[1]->setScore($get1);
+                        $started = true;
                     } else {
-                        $error=true;
+                        $scores[0]->setScore(null);
+                        $scores[1]->setScore(null);
+                        $finished = false;
                     }
                 }
             }
-            if ($error === '') {
-                $manager->flush();
+            if ($finished) {
+                $status = $manager->getRepository(Status::class)->findOneByLabel('Finished');
+                $competition->setStatusId($status);
+            } elseif ($started) {
+                $status = $manager->getRepository(Status::class)->findOneByLabel('Ongoing');
+                $competition->setStatusId($status);
+            } else {
+                $status = $manager->getRepository(Status::class)->findOneByLabel('Futur');
+                $competition->setStatusId($status);
             }
+            $manager->flush();
         }
 
         $matchDays = $competition->getMatchDays();
