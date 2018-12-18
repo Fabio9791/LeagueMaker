@@ -43,7 +43,7 @@ class Score
         return $this->score;
     }
 
-    public function setScore(int $score): self
+    public function setScore(int $score = null): self
     {
         $this->score = $score;
 
