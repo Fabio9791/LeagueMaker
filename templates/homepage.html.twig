@@ -48,11 +48,35 @@
         		<hr>
         		<h1>My Competitions</h1>
         		
-        		{% block section %}
-        		
-        			{% include 'Competition/list.html.twig' %}
-        		
-        		{% endblock %}
+				<table class="table">
+        		<thead>
+        			<tr>
+        				<th>Name</th>
+        				<th>Creation date</th>
+        				<th>Status</th>
+        				<th>Match days</th>
+        				<th>Location</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        				{% for competition in competitions %}
+        				<tr>
+        					<td>{{ competition.getName() }}</td>
+        					<td>{{ competition.getCreationDate()|date('Y-m-d') }}</td>
+        					<td>{{ competition.getStatusId().getLabel() }}</td>
+        					<td>{{ competition.getLocation() }}</td>
+   							<td>
+   								<a href="{{ path("view_competition", {'name':competition.getName()}) }}">
+    								<button type="button" class="btn btn-success btn-sm">Edit</button>
+    							</a>
+    						</td>
+    						<td>
+
+    						</td>
+        				</tr>
+        				{% endfor %}
+        		</tbody>
+        	</table>
         		
         	</div>
     	{% endif %}
@@ -65,7 +89,7 @@
             <div class="card-body">
               <h5 class="card-title">Past competitions</h5>
               <p class="card-text">Display of the last 5 competitions that are over.</p>
-    	        {# {% for i in competitions[]|slice(i, 4) %} 
+    	        {# {% for i in competitions[]|slice(0, 4) %} 
     	        	{% endfor %} #}
             </div>
             <div class="card-footer">

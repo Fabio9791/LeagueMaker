@@ -3,8 +3,10 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\Entity\Competition;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController
+class DefaultController extends Controller
 {
     private $twig;
     
@@ -23,6 +25,11 @@ class DefaultController
      */
     public function homepage()
     {
-        return new Response($this->twig->render('homepage.html.twig'));
+        $user = $this->getUser();
+        $manager = $this->getDoctrine()->getManager();
+        $competitions = $manager->getRepository(Competition::class)->findByUser($user);
+        dump($competitions);
+            
+        return new Response($this->twig->render('homepage.html.twig', ['competitions' => $competitions]));
     }
 }

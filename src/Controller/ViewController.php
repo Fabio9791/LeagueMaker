@@ -12,13 +12,11 @@ class ViewController extends Controller
 
     /**
      *
-     * @Route("/competition/view", name="view_competition", methods={"GET", "POST"})
+     * @Route("/competition/view/{name}", name="view_competition", methods={"GET", "POST"})
      */
-    public function viewCompetition(Request $request, ObjectManager $manager)
+    public function viewCompetition(Request $request, ObjectManager $manager, string $name)
     {
-        
-        //$competitionName = $request->attributes->get('name');
-        $competition = $manager->getRepository(Competition::class)->findOneByName('Ultimate Tournament');
+        $competition = $manager->getRepository(Competition::class)->findOneByName($name); 
         $competitors = $competition->getCompetitors();
         
         $table = [];
@@ -117,13 +115,5 @@ class ViewController extends Controller
             'table' => $table,
             'table2' => $table2
         ]);
-    }
-    
-    public function competitionList()
-    {
-        $manager = $this->getDoctrine()->getManager();
-        $competitions = $manager->getRepository(Competition::class)->findAllbyUser();
-        
-        return $this->render('Competition/list.html.twig', ['competitions' => $competitions]);
     }
 }
