@@ -151,8 +151,8 @@ class CompetitionController extends Controller
                     }
                 }
                 $manager->flush();
-
-                return $this->render('homepage.html.twig');
+                
+                return $this->redirectToRoute('homepage');
             }
 
             return $this->render('Competition/create.html.twig', [

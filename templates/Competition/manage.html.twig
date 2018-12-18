@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<form method="POST">
+	{% for matchday in table2 %}
+	<h3>
+		{{ matchday[0] }}
+	</h3>
+	<table>
+		<tbody>
+			<tr>
+				{% for encounter in matchday[1]  %}
+				<td>{{ encounter[0] }}</td>
+				<td><input value="{{ encounter[1] }}" name="{{ encounter[0]~loop.parent.loop.index }}" /></td>
+				<td><input value="{{ encounter[2] }}" name="{{ encounter[3]~loop.parent.loop.index }}" /></td>
+				<td>{{ encounter[3] }}</td>
+				{% endfor %}
+			</tr>
+		</tbody>
+	</table>
+	{% endfor %}
+	<button class="btn" type="submit">Update</button>
+</form>
+
+{% endblock %}
