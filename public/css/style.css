@@ -289,7 +289,7 @@ footer {
 }
 
 .table th {
-	background-color: #B58900;
+	background-color: #DF691A;
 	color: #000;
 }
 
@@ -300,6 +300,10 @@ footer {
 .matchDay {
 	margin-right: 0px;
 	width: 900px;
+	border: 2px solid #f0ad4e;
+	margin: 20px;
+	padding: 15px;
+	margin-top: 75px;
 }
 
 .marginFix {
