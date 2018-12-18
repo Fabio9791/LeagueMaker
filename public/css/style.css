@@ -24,15 +24,13 @@
  body {
     margin: 0;
     padding: 0;
-    background-color: #455050;
 }
 
 main {
-    color: #ffffff;
+	
 }
 
 .navbar {
-    background-color: #455050;
 }
 
 p, h2, h3 {
@@ -41,7 +39,6 @@ p, h2, h3 {
 }
 
  header {
-    background-color: #354141;
     margin-bottom: 1rem;
     box-shadow: 4px 6px rgb(184, 5, 5);
 }
@@ -188,6 +185,7 @@ p, h2, h3 {
       opacity:.8;
       transition: all 0.5s ease;	
   }
+  
   /**form create competition**/
   form[name=competition_form]{
   padding: 0.5rem;
@@ -291,9 +289,15 @@ footer {
 }
 
 .table th {
-	background-color: #D49600;
+	background-color: #B58900;
+	color: #000;
 }
 
 #matchDays {
 	display: flex;
+}
+
+.matchDay {
+	padding-right: 0px;
+	width: 900px;
 }

@@ -28,23 +28,29 @@
     		</tbody>
     	</table>
     	
+    	
+    	
+        	<section id="matchDays">
         	{% for matchday in table2 %}
-        	<h3>{{ matchday[0] }}</h3>
-        	<table>
-    	<div id="matchDays">
-        		<tbody>
-        			{% for encounter in matchday[1]  %}
-        			<tr>
-        				<td>{{ encounter[0] }}</td>
-        				<td>{{ encounter[1] }}</td>
-        				<td>{{ encounter[2] }}</td>
-        				<td>{{ encounter[3] }}</td>
-        			</tr>
-        			{% endfor %}
-        		</tbody>
-        	</table>
+        		<section class="matchDay">
+                	<table>
+                		<thead>
+                			<th class="">{{ matchday[0] }}</th>
+                		</thead>
+                    		<tbody>
+                    			{% for encounter in matchday[1]  %}
+                    			<tr class="">
+                    				<td>{{ encounter[0] }}</td>
+                    				<td>{{ encounter[1] }}</td>
+                    				<td>{{ encounter[2] }}</td>
+                    				<td>{{ encounter[3] }}</td>
+                    			</tr>
+                    			{% endfor %}
+                    		</tbody>
+                	</table>
+                </section>
     	    {% endfor %}
-		</div>
+        	</section>
 	</div>
 	
 	<section style="height: px">
