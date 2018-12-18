@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Competition;
+use App\Entity\Status;
 
 class ManageController extends Controller
 {
@@ -19,7 +20,7 @@ class ManageController extends Controller
 
         // $competitionName = $request->attributes->get('name');
         $competition = $manager->getRepository(Competition::class)->findOneByName('Ul');
-        $error = false;
+        $finished = true;
         if ($request->request->count() > 0) {
             $matchDays = $competition->getMatchDays();
             for ($y = 0; $y < sizeof($matchDays) - 1; $y ++) {
@@ -56,8 +57,16 @@ class ManageController extends Controller
                     } else {
                         $scores[0]->setScore(null);
                         $scores[1]->setScore(null);
+                        $finished = false;
                     }
                 }
+            }
+            if ($finished) {
+                $status = $manager->getRepository(Status::class)->findOneByLabel('Finished');
+                $competition->setStatusId($status);
+            } else {
+                $status = $manager->getRepository(Status::class)->findOneByLabel('Ongoing');
+                $competition->setStatusId($status);
             }
             $manager->flush();
         }
