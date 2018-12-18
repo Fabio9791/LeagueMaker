@@ -12,13 +12,13 @@ class ManageController extends Controller
 
     /**
      *
-     * @Route("/competition/manage", name="manage_competition", methods={"GET", "POST"})
+     * @Route("/competition/manage/{name}", name="manage_competition", methods={"GET", "POST"})
      */
-    public function manageCompetition(Request $request, ObjectManager $manager)
+    public function manageCompetition(Request $request, ObjectManager $manager, string $name)
     {
 
-        // $competitionName = $request->attributes->get('name');
-        $competition = $manager->getRepository(Competition::class)->findOneByName('Ul');
+        $competition = $manager->getRepository(Competition::class)->findOneByName($name);
+        
         $error = false;
         if ($request->request->count() > 0) {
             $matchDays = $competition->getMatchDays();

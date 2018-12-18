@@ -5,6 +5,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Competition;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
+use App\Entity\Tag;
 
 class DefaultController extends Controller
 {
@@ -23,13 +26,22 @@ class DefaultController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/", name="homepage")
      */
-    public function homepage()
+    public function homepage(Request $request, ObjectManager $manager)
     {
+        dump($request);
         $user = $this->getUser();
-        $manager = $this->getDoctrine()->getManager();
-        $competitions = $manager->getRepository(Competition::class)->findByUser($user);
-        dump($competitions);
-            
-        return new Response($this->twig->render('homepage.html.twig', ['competitions' => $competitions]));
+        $myCompetitions = $manager->getRepository(Competition::class)->findByUser($user);
+        
+        $getTag = $request->request->get('tagSearch');
+        $tag = $manager->getRepository(Tag::class)->findOneByLabel($getTag);
+        dump($tag);
+        if ($tag != null) {
+            $tagCompetitions = $tag->getCompetitions();
+            dump($tagCompetitions);
+        } else {
+            $tagCompetitions = [];
+        }
+        
+        return new Response($this->twig->render('homepage.html.twig', ['myCompetitions' => $myCompetitions, 'tagCompetitions' => $tagCompetitions]));
     }
 }

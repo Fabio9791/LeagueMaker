@@ -151,13 +151,18 @@ footer {
 	margin-top: 10px;
 }
 
+#userLinks {
+	display: flex;
+	justify-content: space-between;
+}
+
+#userLinks a {
+	color: black;
+}
+
 /**SearchResults**/
 #search {
 	margin-top: 10px;	
-}
-
-#searchResults {
-	display: none;
 }
 
 /**Information for new users**/

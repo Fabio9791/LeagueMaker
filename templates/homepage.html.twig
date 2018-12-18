@@ -1,114 +1,158 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}homepage{% endblock %}
+{% block title %}
+{{ parent() }}
+homepage
+{% endblock %}
 
 {% block body %}
 
-	<section>
-		{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-			<div class="container" id="information">
-    			<h3>LeagueMaker facilitates the creation of competitions</h3>
-    			<ul>
-    				<li>The organizer <b>creates his competition online.</b></li>
-    				<li>Players <b>register via LeagueMaker</b> for the competition.</li>
-    				<li>Generation of an <b>optimized</b> format for the pleasure of all players.</li>
-    				<li>Players enter their <b>own results</b>. The organizer moderates if necessary.</li>
-    				<li>Ranking and scoreboard are <b>generated on LeagueMaker.</b></li>
-    			</ul>
-    			<a href="{{ path("fos_user_security_login") }}">
-    				<button type="button" class="btn btn-primary btn-lg">Log in to create a competition</button>
-    			</a>
-			</div>
-		{% endif %}
-	</section>
+<section>
+	{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+	<div class="container" id="information">
+		<h3>LeagueMaker facilitates the creation of competitions</h3>
+		<ul>
+			<li>The organizer <b>creates his competition online.</b></li>
+			<li>Players <b>register via LeagueMaker</b> for the competition.
+			</li>
+			<li>Players enter their <b>own results</b>. The organizer
+				moderates if necessary.
+			</li>
+			<li>Generation of an <b>optimized</b> format for the pleasure of
+				all players.
+			</li>
+			<li>Ranking and scoreboard are <b>generated on LeagueMaker.</b></li>
+		</ul>
+		<a href="{{ path("fos_user_security_login") }}">
+			<button type="button" class="btn btn-primary btn-lg">Log in
+				to create a competition</button>
+		</a>
+	</div>
+	{% endif %}
+</section>
 
-    <section id="search">
-    	<div class="container">
-        	<hr>
-    		<div id="imaginary_container">
-    			<div class="input-group stylish-input-group">
-    				<input type="text" class="form-control" placeholder="Search competition" id="tagSearch">
-    				<button type="submit" class="btn btn-success" id="tagSearchButton">Search</button>
-    			</div>
-    		</div>
-    	</div>
-    	
-		<div class="row create" id="searchResults">
-    		<div class="col-sm-12 formComp">
-    			<ul>
-    			
-    			</ul>	
-    		</div>
-    	</div>
-    </section>
-    
-    <section>
-    	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        	<div class="container">
-        		<hr>
-        		<h1>My Competitions</h1>
-        		
-				<table class="table">
-        		<thead>
-        			<tr>
-        				<th>Name</th>
-        				<th>Creation date</th>
-        				<th>Status</th>
-        				<th>Match days</th>
-        				<th>Location</th>
-        			</tr>
-        		</thead>
-        		<tbody>
-        				{% for competition in competitions %}
+<!-- Search by tags -->
+<section id="search">
+	<div class="container">
+		<hr>
+		<div id="imaginary_container">
+			<form method="POST">
+				<div class="input-group stylish-input-group">
+					<input type="text" class="form-control"
+						placeholder="Search competition" id="tagSearch" name="tagSearch">
+					<button type="submit" class="btn btn-success" id="tagSearchButton">Search</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	{% if tagCompetitions|length > 0  %}
+		<div class="container">
+			<hr>
+            <div class="row create" id="searchResults">
+            	<table class="table">
+        			<thead>
         				<tr>
-        					<td>{{ competition.getName() }}</td>
-        					<td>{{ competition.getCreationDate()|date('Y-m-d') }}</td>
-        					<td>{{ competition.getStatusId().getLabel() }}</td>
-        					<td>{{ competition.getLocation() }}</td>
-   							<td>
-   								<a href="{{ path("view_competition", {'name':competition.getName()}) }}">
-    								<button type="button" class="btn btn-success btn-sm">Edit</button>
-    							</a>
-    						</td>
-    						<td>
-
-    						</td>
+        					<th>Name</th>
+        					<th>Creation date</th>
+        					<th>Status</th>
+        					<th>Location</th>
+        					<th>Creator</th>
+        					<th></th>
+        				</tr>
+        			</thead>
+        			<tbody>
+        				{% for tagCompetition in tagCompetitions %}
+        				<tr>
+        					<td>{{ tagCompetition.getName() }}</td>
+        					<td>{{ tagCompetition.getCreationDate()|date('Y-m-d') }}</td>
+        					<td>{{ tagCompetition.getStatusId().getLabel() }}</td>
+        					<td>{{ tagCompetition.getLocation() }}</td>
+        					<td>{{ tagCompetition.getUser().getUsername() }}</td>
+        					<td><a
+        						href="{{ path("view_competition", {'name':tagCompetition.getName()}) }}">
+        							<button type="button" class="btn btn-primary btn-sm">View</button>
+        					</a></td>
         				</tr>
         				{% endfor %}
-        		</tbody>
-        	</table>
-        		
-        	</div>
-    	{% endif %}
-    </section>
-    
-    <main class="container">
-    	<hr>
-        <div class="card-deck">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Past competitions</h5>
-              <p class="card-text">Display of the last 5 competitions that are over.</p>
-    	        {# {% for i in competitions[]|slice(0, 4) %} 
-    	        	{% endfor %} #}
+        			</tbody>
+        		</table>
             </div>
-            <div class="card-footer">
-            	<button type="button" class="btn btn-primary btn-sm">Show all</button>            				
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Ongoing competitions</h5>
-              <p class="card-text">Display of the five ongoing competitions.</p>
-            </div>
-            <div class="card-footer">
-				<button type="button" class="btn btn-primary btn-sm">Show all</button>
-            </div>
-          </div>
         </div>
-    	<hr>
-    </main>
-    
+    {% endif %}
+</section>
+
+<section>
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	<div class="container">
+		<hr>
+		<h1>My Competitions</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Creation date</th>
+					<th>Status</th>
+					<th>Location</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for myCompetition in myCompetitions %}
+				<tr>
+					<td>{{ myCompetition.getName() }}</td>
+					<td>{{ myCompetition.getCreationDate()|date('Y-m-d') }}</td>
+					<td>{{ myCompetition.getStatusId().getLabel() }}</td>
+					<td>{{ myCompetition.getLocation() }}</td>
+					<td><a
+						href="{{ path("manage_competition", {'name':myCompetition.getName()}) }}">
+							<button type="button" class="btn btn-success btn-sm">Edit</button>
+					</a></td>
+					<td><a
+						href="{{ path("view_competition", {'name':myCompetition.getName()}) }}">
+							<button type="button" class="btn btn-primary btn-sm">View</button>
+					</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+	{% endif %}
+</section>
+
+<main class="container">
+<hr>
+<div class="card-deck">
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Past competitions</h5>
+			<p class="card-text">Display of the last 5 competitions that are
+				over.</p>
+			{# {% for i in competitions[]|slice(0, 4) %} {% endfor %} #}
+		</div>
+		<div class="card-footer">
+			<button type="button" class="btn btn-primary btn-sm">Show
+				all</button>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Ongoing competitions</h5>
+			<p class="card-text">Display of the five ongoing competitions.</p>
+		</div>
+		<div class="card-footer">
+			<button type="button" class="btn btn-primary btn-sm">Show
+				all</button>
+		</div>
+	</div>
+</div>
+<hr>
+</main>
+
 {% endblock %}
 
-{% block javascripts %}{{ parent() }}{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
