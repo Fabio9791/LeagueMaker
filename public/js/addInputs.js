@@ -4,10 +4,10 @@ let y = 2;
 if ($('#tagData').val() != "") {
     i = $('#tagData').val();
 }
-
 if ($('#competitorData').val() != "") {
     y = $('#competitorData').val();
 }
+
 $('#tagData').val(i);
 $('#competitorData').val(y);
 $('#btnTag').on('click', function (e) {
