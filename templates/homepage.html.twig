@@ -10,7 +10,36 @@ homepage
 <section>
 	{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 	<div class="container" id="information">
-		<h3>LeagueMaker facilitates the creation of competitions</h3>
+		<h3 id="hpTitle">LeagueMaker facilitates the creation of competitions</h3>
+		
+		<section class="row">
+			<article class="col">
+				<p><i class="fas fa-user-cog" id="cog"></i></p>
+			
+					<ul>
+						<li id="manager"> MANAGER </li>
+						<br>
+						<li><i class="fas fa-trophy"></i> Create a competition of any type</li>
+						<li><i class="fas fa-trophy"></i> Update progress</li>
+						<li><i class="fas fa-trophy"></i> Manage invites</li>
+					</ul>
+			
+			</article>
+			<article class="col">
+				<p><i class="fas fa-user-friends" id="friends"></i></p>
+				<p>
+					<ul>
+						<li id="guest">GUEST</li>
+						<br>
+						<li><i class="fas fa-trophy"></i> View competitions</li>
+						<li><i class="fas fa-trophy"></i> Join local competition & track its progress</li>
+						<li><i class="fas fa-trophy"></i> Register to create & join online!</li>
+					</ul>
+				</p>
+			</article>
+		</section>
+		
+		<!-- 
 		<ul>
 			<li>The organizer <b>creates his competition online.</b></li>
 			<li>Players <b>register via LeagueMaker</b> for the competition.
@@ -23,9 +52,12 @@ homepage
 			</li>
 			<li>Ranking and scoreboard are <b>generated on LeagueMaker.</b></li>
 		</ul>
+		 -->
+		
+		
+		
 		<a href="{{ path("fos_user_security_login") }}">
-			<button type="button" class="btn btn-primary btn-lg">Log in
-				to create a competition</button>
+			<button type="button" class="btn btn-primary btn-lg">Create a competition now!</button>
 		</a>
 	</div>
 	{% endif %}

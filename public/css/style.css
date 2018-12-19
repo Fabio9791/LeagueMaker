@@ -53,6 +53,36 @@ p, h2, h3 {
     height: 75px;
 }
 
+/**HOMEPAGE**/
+#cog {
+	color: #5cb85c;
+	font-size: 7rem;
+	margin-left: 83px;
+}
+
+#manager {
+	color: #5cb85c;
+	
+}
+
+#friends {
+	color: #3bb4d8;
+	font-size: 7rem;
+	margin-left: 50px;
+}
+
+#guest {
+	color: #3bb4d8;
+}
+
+.fa-trophy {
+	color: #f0ad4e;
+}
+
+#hpTitle {
+	margin: 30px;
+}
+
 /**past/on going tables**/
 #competitionDisplay{
 	display: flex;
@@ -319,7 +349,7 @@ footer {
 }
 
 #information ul li {
-	color: white;
+	
 }
 
 #information ul li b {
