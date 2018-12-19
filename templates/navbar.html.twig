@@ -8,7 +8,7 @@
 			{% set route = app.request.get('_route') %}
 
 			<li class="nav-item{% if route == 'homepage' %} active{% endif %}">
-        		<a class="nav-link" href="{{ path("homepage") }}">{{ 'Home' }}</a>
+        		<a class="nav-link" href="{{ path("homepage") }}">{{ 'Home' }} </a>
       		</li>
 
   			<li class="nav-item{% if route == 'about' %} active{% endif %}">
@@ -16,7 +16,7 @@
       		</li>
       		
       		<li class="nav-item{% if route == 'secretAdministration' %} active{% endif %}">
-        		<a class="nav-link" href="{{ path("easyadmin") }}">{{ 'Administration'|trans }}</a>
+        		<a class="nav-link" href="{{ path("easyadmin") }}" target="_blank">{{ 'Administration'|trans }}</a>
       		</li>
       		
       		{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
