@@ -17,11 +17,10 @@ class ManageController extends Controller
      */
     public function manageCompetition(Request $request, ObjectManager $manager, string $id)
     {
-        if($this->getUser()==null){
+        $competition = $manager->getRepository(Competition::class)->findOneById($id);
+        if ($this->getUser() != $competition->getUser()) {
             return $this->redirectToRoute('homepage');
         }
-        
-        $competition = $manager->getRepository(Competition::class)->findOneById($id);
         $finished = true;
         $started = false;
         if ($request->request->count() > 0) {

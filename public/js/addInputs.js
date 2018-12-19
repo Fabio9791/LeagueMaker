@@ -1,5 +1,13 @@
 let i = 1;
 let y = 2;
+
+if ($('#tagData').val() != "") {
+    i = $('#tagData').val();
+}
+
+if ($('#competitorData').val() != "") {
+    y = $('#competitorData').val();
+}
 $('#tagData').val(i);
 $('#competitorData').val(y);
 $('#btnTag').on('click', function (e) {
@@ -12,7 +20,7 @@ $('#btnTag').on('click', function (e) {
 
 $('#btnTagRemove').on('click', function (e) {
     e.preventDefault();
-    if (i > 0) {
+    if (i > 1) {
         i--;
         $('#tags').children().last().remove();
     }
