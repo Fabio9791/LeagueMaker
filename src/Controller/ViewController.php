@@ -92,7 +92,7 @@ class ViewController extends Controller
         $matchDays = $competition->getMatchDays();
         for ($y = 0; $y < sizeof($matchDays) - 1; $y ++) {
             for ($i = $y + 1; $i < sizeof($matchDays); $i ++) {
-                if (intval(substr($matchDays[$y]->getLabel(), strlen($matchDays[$y]->getLabel()) - 1)) > intval(substr($matchDays[$i]->getLabel(), strlen($matchDays[$i]->getLabel()) - 1))) {
+                if (intval(substr($matchDays[$y]->getLabel(), strlen($matchDays[$y]->getLabel()) - 2)) > intval(substr($matchDays[$i]->getLabel(), strlen($matchDays[$i]->getLabel()) - 2))) {
                     $temp = $matchDays[$y];
                     $matchDays[$y] = $matchDays[$i];
                     $matchDays[$i] = $temp;
