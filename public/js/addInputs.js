@@ -12,10 +12,12 @@ $('#tagData').val(i);
 $('#competitorData').val(y);
 $('#btnTag').on('click', function (e) {
     e.preventDefault();
-    i++;
-    $('#tags').append('<input type="text" class="form-control" name="tag' + i + '" id="tag' + i + '">')
-    $('#tagData').val(i);
-    console.log(i);
+    if (i < 100) {
+        i++;
+        $('#tags').append('<input type="text" class="form-control" name="tag' + i + '" id="tag' + i + '">')
+        $('#tagData').val(i);
+        console.log(i);
+    }
 });
 
 $('#btnTagRemove').on('click', function (e) {
@@ -32,10 +34,12 @@ $('#btnTagRemove').on('click', function (e) {
 
 $('#btnCompetitor').on('click', function (e) {
     e.preventDefault();
-    y++;
-    $('#competitors').append('<input type="text" class="form-control" name="competitor' + y + '" id="competitor' + y + '">')
-    $('#competitorData').val(y);
-    console.log(y);
+    if (y < 100) {
+        y++;
+        $('#competitors').append('<input type="text" class="form-control" name="competitor' + y + '" id="competitor' + y + '">')
+        $('#competitorData').val(y);
+        console.log(y);
+    }
 });
 
 $('#btnCompetitorRemove').on('click', function (e) {

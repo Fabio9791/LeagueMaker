@@ -51,6 +51,9 @@ class CompetitionController extends Controller
                 $location = null;
             }
             $competitorData = intval($request->request->get('competitorData'));
+            if($competitorData > 100){
+                $error='To many competitors, the limit is 100';
+            }
             $competitorNames = [];
             for ($i = 1; $i <= $competitorData; $i ++) {
                 $competitorInput = 'competitor' . $i;
