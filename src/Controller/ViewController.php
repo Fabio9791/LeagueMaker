@@ -12,21 +12,15 @@ class ViewController extends Controller
 
     /**
      *
-     * @Route("/competition/view", name="view_competition", methods={"GET", "POST"})
+     * @Route("/competition/view/{id}", name="view_competition", methods={"GET", "POST"})
      */
-    public function viewCompetition(Request $request, ObjectManager $manager)
+    public function viewCompetition(Request $request, ObjectManager $manager, string $id)
     {
+
         
         //$competitionName = $request->attributes->get('name');
         $competition = $manager->getRepository(Competition::class)->findOneByName('Ultimate Tournament');
-        
-        /* Test doesnt work
-        $locations = new Competition();
-        $location = $locations->getLocation('Ultimate Tournament');
-        
-        var_dump($location);
-        */
-        
+        $competition = $manager->getRepository(Competition::class)->findOneById($id); 
         $competitors = $competition->getCompetitors();
         
         $table = [];

@@ -6,8 +6,8 @@
     	<form method="POST">
     	{{ error }}
           <div class="form-group">
-            <label for="name">Competition name : </label>
-            <input type="text" class="form-control" name="name" placeholder="Name your competition">
+            <label for="name">*Competition name : </label>
+            <input type="text" class="form-control" name="name">
           </div>
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" name="homeVisitor">
@@ -15,7 +15,7 @@
           </div>
           <div class="form-group">
             <label for="location">Location : </label>
-            <input type="text" class="form-control" name="location" placeholder="Competition location">
+            <input type="text" class="form-control" name="location">
           </div>
           <div class="form-group">
             <label for="tag">Tag : </label>
@@ -23,13 +23,16 @@
             	<input type="text" class="form-control" name="tag1" id="tag1">
             </div>
             <button class="btn btn-success" id="btnTag" type="button">+</button>
+            <button class="btn btn-danger" id="btnTagRemove" type="button">-</button>
           </div>
           <div class="form-group">
-            <label for="competitor">Competitors : </label>
+            <label for="competitor">*Competitors : </label>
             <div id=competitors>
             	<input type="text" class="form-control" name="competitor1" id="competitor1">
+            	<input type="text" class="form-control" name="competitor2" id="competitor2">
             </div>
             <button class="btn btn-success" id="btnCompetitor">+</button>
+            <button class="btn btn-danger" id="btnCompetitorRemove">-</button>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
           <input type="hidden" name="tagData" id="tagData" />
