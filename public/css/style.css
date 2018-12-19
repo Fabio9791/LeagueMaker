@@ -23,7 +23,7 @@
 
  body {
     margin: 0;
-    padding: 0;
+    padding: 0 0 10vh 0px;
 }
 
 main {
@@ -39,8 +39,7 @@ p, h2, h3 {
 }
 
  header {
-    margin-bottom: 1rem;
-    box-shadow: 4px 6px #929292;
+    height: 71px;
 }
 
 .create{
@@ -285,7 +284,8 @@ footer {
 
 /*CompetitionView**/
 .table {
-	margin-top: 50px;
+	margin-top: 100px;
+	border: 2px solid white;
 }
 
 .table th {
@@ -300,6 +300,10 @@ footer {
 .matchDay {
 	margin-right: 0px;
 	width: 900px;
+	border: 2px solid #f0ad4e;
+	margin: 20px;
+	padding: 15px;
+	margin-top: 75px;
 }
 
 .marginFix {
