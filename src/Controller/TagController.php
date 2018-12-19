@@ -5,7 +5,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Tag;
-use App\Form\TagFormType;
 class TagController extends Controller
 {
     /**

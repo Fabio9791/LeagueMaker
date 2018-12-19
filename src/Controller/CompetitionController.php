@@ -39,6 +39,7 @@ class CompetitionController extends Controller
         if ($request->request->count() > 0) {
             // //////////////////////////////////////////////
             // validation on these
+            dump($request);
             $error = '';
             $name = $request->request->get('name');
             $getName = $manager->getRepository(Competition::class)->findOneByName($name);

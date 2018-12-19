@@ -8,12 +8,18 @@
 			{% set route = app.request.get('_route') %}
 
 			<li class="nav-item{% if route == 'homepage' %} active{% endif %}">
-        		<a class="nav-link" href="{{ path("homepage") }}">{{ 'Home' }}</a>
+        		<a class="nav-link" href="{{ path("homepage") }}">{{ 'Home' }} </a>
       		</li>
 
   			<li class="nav-item{% if route == 'about' %} active{% endif %}">
         		<a class="nav-link" href="{{ path("about") }}">{{ 'About' }}</a>
       		</li>
+      		
+      		{% if is_granted('ROLE_ADMIN') %}
+      		<li class="nav-item{% if route == 'secretAdministration' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path("easyadmin") }}" target="_blank">{{ 'Administration'|trans }}</a>
+      		</li>
+      		{% endif %}
       		
       		{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
       		<li class="nav-item{% if route == 'fos_user_registration_register' %} active{% endif %}">
