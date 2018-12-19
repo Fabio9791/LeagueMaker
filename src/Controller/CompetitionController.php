@@ -24,19 +24,22 @@ class CompetitionController extends Controller
      */
     public function createCompetition(Request $request, ObjectManager $manager, MatchupGenerator $generator)
     {
+        if($this->getUser()==null){
+            return $this->redirectToRoute('homepage');
+        }
         
-        if ($request->request->count()==0){
-            $error='';
+        if ($request->request->count() == 0) {
+            $error = '';
             return $this->render('Competition/create.html.twig', [
                 'request' => $request,
                 'error' => $error
             ]);
         }
 
-        if ($request->request->count()>0) {
+        if ($request->request->count() > 0) {
             // //////////////////////////////////////////////
             // validation on these
-            $error='';
+            $error = '';
             $name = $request->request->get('name');
             $getName = $manager->getRepository(Competition::class)->findOneByName($name);
             if ($name === '' || $getName != null) {
@@ -65,8 +68,7 @@ class CompetitionController extends Controller
             if ($error === '') {
 
                 $date = new \DateTime();
-                $status = $manager->getRepository(Status::class)->findOneByLabel('Ongoing');
-
+                $status = $manager->getRepository(Status::class)->findOneByLabel('Futur');
                 $competition = new Competition();
                 $competition->setStatusId($status);
                 $user = $this->getUser();
@@ -82,6 +84,9 @@ class CompetitionController extends Controller
                     $nameTag->setLabel($name);
                     $nameTag->addCompetition($competition);
                     $manager->persist($nameTag);
+                } else {
+                    $competition->addTagId($nameTag);
+                    $manager->persist($competition);
                 }
 
                 if ($location != null) {
@@ -91,6 +96,9 @@ class CompetitionController extends Controller
                         $LocationTag->setLabel($location);
                         $LocationTag->addCompetition($competition);
                         $manager->persist($LocationTag);
+                    } else {
+                        $competition->addTagId($LocationTag);
+                        $manager->persist($competition);
                     }
                 }
 
@@ -100,10 +108,16 @@ class CompetitionController extends Controller
                     if ($request->request->get($tagInput) != '') {
                         $tagLabel = $request->request->get($tagInput);
                         if ($tagLabel !== '') {
-                            $tag = new Tag();
-                            $tag->setLabel($tagLabel);
-                            $tag->addCompetition($competition);
-                            $manager->persist($tag);
+                            $tag = $manager->getRepository(Tag::class)->findOneByLabel($tagLabel);
+                            if ($tag == null) {
+                                $tag = new Tag();
+                                $tag->setLabel($tagLabel);
+                                $tag->addCompetition($competition);
+                                $manager->persist($tag);
+                            } else {
+                                $competition->addTagId($tag);
+                                $manager->persist($competition);
+                            }
                         }
                     }
                 }
@@ -151,13 +165,14 @@ class CompetitionController extends Controller
                     }
                 }
                 $manager->flush();
-                
+
                 return $this->redirectToRoute('homepage');
+               
             }
 
             return $this->render('Competition/create.html.twig', [
                 'request' => $request,
-                'error' => $error,
+                'error' => $error
             ]);
         }
     }

@@ -6,20 +6,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Competition;
+use App\Entity\Status;
 
 class ManageController extends Controller
 {
 
     /**
      *
-     * @Route("/competition/manage", name="manage_competition", methods={"GET", "POST"})
+     * @Route("/competition/manage/{id}", name="manage_competition", methods={"GET", "POST"})
      */
-    public function manageCompetition(Request $request, ObjectManager $manager)
+    public function manageCompetition(Request $request, ObjectManager $manager, string $id)
     {
-
-        // $competitionName = $request->attributes->get('name');
-        $competition = $manager->getRepository(Competition::class)->findOneByName('Ul');
-        $error = false;
+        if($this->getUser()==null){
+            return $this->redirectToRoute('homepage');
+        }
+        
+        $competition = $manager->getRepository(Competition::class)->findOneById($id);
+        $finished = true;
+        $started = false;
         if ($request->request->count() > 0) {
             $matchDays = $competition->getMatchDays();
             for ($y = 0; $y < sizeof($matchDays) - 1; $y ++) {
@@ -53,11 +57,23 @@ class ManageController extends Controller
                     if (is_int($get0) && is_int($get1)) {
                         $scores[0]->setScore($get0);
                         $scores[1]->setScore($get1);
+                        $started = true;
                     } else {
                         $scores[0]->setScore(null);
                         $scores[1]->setScore(null);
+                        $finished = false;
                     }
                 }
+            }
+            if ($finished) {
+                $status = $manager->getRepository(Status::class)->findOneByLabel('Finished');
+                $competition->setStatusId($status);
+            } elseif ($started) {
+                $status = $manager->getRepository(Status::class)->findOneByLabel('Ongoing');
+                $competition->setStatusId($status);
+            } else {
+                $status = $manager->getRepository(Status::class)->findOneByLabel('Futur');
+                $competition->setStatusId($status);
             }
             $manager->flush();
         }

@@ -30,34 +30,44 @@ main {
 	
 }
 
+#image {
+	width: 70px;
+	height: 70px;
+}
+
 .navbar {
+}
+
+.navbar ul li a:hover {
+	background-color: rgb(184, 5, 5);
+	border: 3px solid rgb(184, 5, 5);
 }
 
 p, h2, h3 {
     color: #ffffff;
-    text-shadow: rgb(184, 5, 5) 2px 2px 3px;
 }
 
  header {
-    height: 71px;
+    height: 75px;
 }
 
-.create{
-    padding: 2rem;
-    background-color: #354141;
-    border-radius: 1rem;
-    margin: 2rem auto;
-    width: 50%;
-    box-shadow: 4px 6px rgb(184, 5, 5);
+/**past/on going tables**/
+#competitionDisplay{
+	display: flex;
+	justify-content: space-between;
 }
 
-/**cards**/
-.cardManage, .cardInvite, .cardCreate{
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-    text-align: center;
-   
+h5 {
+	color: black;
 }
+
+/**form create competition**/
+form[name=competition_form]{
+padding: 0.5rem;
+margin: 0 auto;
+
+}
+
 
 .news {
     background: #354141;
@@ -191,13 +201,10 @@ p, h2, h3 {
   margin: 0 auto;
   
   }
+
 #competition_form label{
 	margin-right: 1rem;
 	font-size: 1.2rem;
-}
-
-#competition_form input {
-	
 }
 
 #competition_form_submit{
@@ -208,15 +215,16 @@ p, h2, h3 {
 	font-size: 1.3rem;
 }
 
-  .news:hover .cat{
-    background:#0085FF;
-    color:white;
-  }
+ .news:hover .cat{
+   background:#0085FF;
+   color:white;
+ }
 
-  .carta{
-      padding-right: 0;
-      padding-left: 0;
-  }
+ .carta{
+     padding-right: 0;
+     padding-left: 0;
+ }
+ 
 /**footer**/
 footer {
     background-color: #354141;
@@ -227,14 +235,14 @@ footer {
 
 /**Register**/
 #registerTitle {
-	color: #929292;
+	color: #f0ad4e;
 	text-align: center;
 	text-decoration: underline;
 	margin-bottom: 30px;
 }
 
 #registerForm {
-	border: 3px solid #929292;
+	border: 3px solid #f0ad4e;
 	border-radius: 1rem;
 	padding: 10px;
 	color: white;
@@ -252,14 +260,14 @@ footer {
 
 /**Login**/
 #loginTitle {
-	color: #929292;
+	color: #f0ad4e;
 	text-align: center;
 	text-decoration: underline;
 	margin-bottom: 30px;
 }
 
 #loginForm {
-	border: 3px solid #929292;
+	border: 3px solid #f0ad4e;
 	border-radius: 1rem;
 	padding: 10px;
 	color: white;
@@ -273,13 +281,40 @@ footer {
 	margin-top: 10px;
 }
 
+#userLinks {
+	display: flex;
+	justify-content: space-between;
+}
+
+#userLinks a {
+	color: black;
+}
+
 /**SearchResults**/
 #search {
 	margin-top: 10px;	
 }
 
-#searchResults {
-	display: none;
+/**Information for new users**/
+#information {
+	margin-bottom: 30px;
+	margin-top: 30px;
+	border: 3px solid rgb(184, 5, 5);
+	border-radius: 1rem;
+	padding: 10px;
+	text-align: center;
+}
+
+#information ul {
+	list-style: none;
+}
+
+#information ul li {
+	color: white;
+}
+
+#information ul li b {
+	color: black;
 }
 
 /*CompetitionView**/
