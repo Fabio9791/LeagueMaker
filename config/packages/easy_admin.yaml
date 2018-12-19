@@ -1,0 +1,48 @@
+easy_admin:
+    list:
+       actions:
+            - { name: 'edit', icon: 'pencil', label: 'Edit' }
+            - { name: 'delete', icon: 'trash', label: 'Delete' }
+    edit:
+       actions:           
+            - { name: 'delete', icon: 'trash', label: 'Delete' }
+            - { name: 'list', icon: 'list', label: 'Back to List' }
+    site_name: 'LeagueMaker Administration.'              
+    design:
+        brand_color: 'red'
+        assets:
+           css: ['css/customBackend.css']
+        menu: 
+            - { entity: 'User', icon: 'user' }
+            - { entity: 'Competition', icon: 'tag' }
+            - { entity: 'Tag', icon: 'tag' }
+        
+    entities:
+        User:
+            class: App\Entity\User
+            label: 'My Users'
+            list:
+                title: "Most recent Users"
+                fields: ['Username', 'email']
+                actions:
+                     - { name: 'edit', icon: 'pencil', label: 'Edit' }
+                
+            edit:
+                title: "Edit Page Users"
+                
+                fields: ['Username', 'email', 'roles', 'password', 'competitions'] 
+            disabled_actions: ['new']                   
+        Competition:
+            class: App\Entity\Competition
+            list:
+                title: "Most recent Competitions"
+                actions: ['-edit']
+            edit:
+                title: "Edit Page Competition"
+        Tag:
+            class: App\Entity\Tag
+            list:
+                title: "Most recent Tags" 
+                actions: ['-edit']
+            edit:
+                title: "Edit Page Tags" 

@@ -1,3 +1,4 @@
+
 var availableTags = [];
 $.getJSON(
 		"/en/tag/search?pattern=" + $('#tagSearch').val(),
@@ -11,3 +12,4 @@ $.getJSON(
 	);
 $('#tagSearch').autocomplete({ source: availableTags});
 console.log(availableTags);
+

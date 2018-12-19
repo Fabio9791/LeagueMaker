@@ -1,0 +1,35 @@
+.main-header #header-logo .logo{
+	color: darkblue;
+}
+
+.content-header-title{
+	color: red;
+}
+
+.list-user, .edit-user{
+	background-color: #00ff80;
+}
+
+.list-competition, .edit-competition{
+	background-color: #00ff80;
+}
+
+.list-tag, .edit-tag{
+	background-color: #00ff80;
+}
+
+.main-sidebar{
+	background-color: #4646ff;
+}
+
+.sidebar{
+	background-color: #8080ff;
+}
+
+.content{
+	background-color: #00ffff;
+}
+
+.datagrid thead{
+	background-color: #00ffff;
+}
