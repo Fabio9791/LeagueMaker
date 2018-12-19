@@ -124,8 +124,7 @@ class ViewController extends Controller
         return $this->render('Competition/view.html.twig', [
             'table' => $table,
             'table2' => $table2,
-            'location' => var_dump($competition->getLocation())
-            
+            'location' => $competition->getLocation()
         ]);
         
     }
