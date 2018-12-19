@@ -59,13 +59,13 @@ class CompetitionController extends Controller
                 $competitorInput = 'competitor' . $i;
                 $competitorName = $request->request->get($competitorInput);
                 if ($competitorName === '') {
-                    $error = 'all competitors must have a unique name';
+                    $error = ' All competitors must have a unique name';
                 }
                 array_push($competitorNames, $competitorName);
             }
             $result = $generator->allElementsUnique($competitorNames);
             if (! $result) {
-                $error = 'all competitors must have a unique name';
+                $error = ' All competitors must have a unique name';
             }
             // ///////////////////////////////////////////////
 

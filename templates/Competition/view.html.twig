@@ -1,45 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+	<div class="container">
+	
+    	<table class="table">
+    		<thead>
+    			<tr>
+    				<th>pos</th>
+    				<th>name</th>
+    				<th>points</th>
+    				<th>scored</th>
+    				<th>got scored</th>
+    				<th>score diff</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    			{% for competitor in table %}
+    				<tr>
+    					<td>{{ loop.index }}</td>
+    					<td>{{ competitor[0] }}</td>
+    					<td>{{ competitor[1] }}</td>
+    					<td>{{ competitor[2] }}</td>
+    					<td>{{ competitor[3] }}</td>
+    					<td>{{ competitor[2]-competitor[3] }}</td>
+    				</tr>
+    			{% endfor %}
+    		</tbody>
+    	</table>
+    	
+    	
+    	
+        	<section id="matchDays">
+        	{% for matchday in table2 %}
+        		<section class="matchDay">
+                	<table>
+                		<thead>
+                			<th class="tHead">{{ matchday[0] }}</th>
+                		</thead>
+                    		<tbody>
+                    			{% for encounter in matchday[1]  %}
+                    			<tr>
+                    				<td class="marginFix">{{ encounter[0] }}</td>
+                    				<td>{{ encounter[1] }}</td>
+                    				<td> - </td>
+                    				<td>{{ encounter[2] }}</td>
+                    				<td>  </td>
+                    				<td>{{ encounter[3] }}</td>
+                    			</tr>
+                    			{% endfor %}
+                    		</tbody>
+                	</table>
+                </section>
+    	    {% endfor %}
+        	</section>
+	</div>
+	
+	<section style="height: px">
+	</section>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>pos</th>
-				<th>name</th>
-				<th>points</th>
-				<th>scored</th>
-				<th>got scored</th>
-				<th>score diff</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for competitor in table %}
-				<tr>
-					<td>{{ loop.index }}</td>
-					<td>{{ competitor[0] }}</td>
-					<td>{{ competitor[1] }}</td>
-					<td>{{ competitor[2] }}</td>
-					<td>{{ competitor[3] }}</td>
-					<td>{{ competitor[2]-competitor[3] }}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-	{% for matchday in table2 %}
-	<h3>{{ matchday[0] }}</h3>
-	<table>
-		<tbody>
-			<tr>
-			{% for encounter in matchday[1]  %}
-				<td>{{ encounter[0] }}</td>
-				<td>{{ encounter[1] }}</td>
-				<td>{{ encounter[2] }}</td>
-				<td>{{ encounter[3] }}</td>
-			{% endfor %}
-			</tr>
-		</tbody>
-	</table>
-	{% endfor %}
-
+	
+	<div id="mapContainer">
+        {% include 'mapbox.html.twig' %}
+	</div>
 {% endblock %}

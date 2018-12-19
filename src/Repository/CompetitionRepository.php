@@ -20,11 +20,13 @@ class CompetitionRepository extends ServiceEntityRepository
         parent::__construct($registry, Competition::class);
     }
 
+    
     /**
      *
      * @return Competition[] Returns an array of Competition objects
      */
     public function findByStatus($value)
+
     {
         return $this->createQueryBuilder('competition')
             ->andWhere('competition.statusId = :val')
@@ -34,6 +36,21 @@ class CompetitionRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    
+
+    
+    public function findOneBySomeField($value): ?Competition
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    
+
 
     /*
      * public function findOneBySomeField($value): ?Competition
@@ -46,4 +63,5 @@ class CompetitionRepository extends ServiceEntityRepository
      * ;
      * }
      */
+
 }

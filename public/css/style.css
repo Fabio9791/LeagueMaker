@@ -14,14 +14,13 @@
 
 }
 
-body {
-	margin: 0;
-	padding: 0;
-	background-color: #455050;
+ body {
+    margin: 0;
+    padding: 0 0 10vh 0px;
 }
 
 main {
-	color: #ffffff;
+	
 }
 
 #image {
@@ -30,26 +29,53 @@ main {
 }
 
 .navbar {
-	background-color: #455050;
+
+	margin-bottom: 50px;
+	padding: 0px;
 }
 
 .navbar ul li a:hover {
-	background-color: rgb(184, 5, 5);
-	border: 3px solid rgb(184, 5, 5);
+	background-color: #f0ad4e;
 }
 
-p,
-h2,
-h3 {
-	color: #ffffff;
-	text-shadow: rgb(184, 5, 5) 2px 2px 3px;
+p, h2, h3 {
+    color: #ffffff;
 }
 
-header {
-	background-color: #354141;
-	margin-bottom: 1rem;
-	box-shadow: 4px 6px rgb(184, 5, 5);
+ header {
+    height: 75px;
 }
+
+/**HOMEPAGE**/
+#cog {
+	color: #5cb85c;
+	font-size: 7rem;
+	margin-left: 83px;
+}
+
+#manager {
+	color: #5cb85c;
+	
+}
+
+#friends {
+	color: #3bb4d8;
+	font-size: 7rem;
+	margin-left: 50px;
+}
+
+#guest {
+	color: #3bb4d8;
+}
+
+.fa-trophy {
+	color: #f0ad4e;
+}
+
+#hpTitle {
+	margin: 30px;
+}
+
 
 /**past/on going tables**/
 #competitionDisplay {
@@ -58,14 +84,157 @@ header {
 }
 
 h5 {
-	color: black;
+	color: white;
+}
+
+#publicComps {
+	margin-top: 50px;
 }
 
 /**form create competition**/
-form[name=competition_form] {
-	padding: 0.5rem;
-	margin: 0 auto;
+form[name=competition_form]{
+padding: 0.5rem;
+margin: 0 auto;
+}
 
+.news {
+    background: #354141;
+    position: relative;
+    overflow: hidden;
+    z-index:1;
+    transition: all 0.5s ease;	
+    color: #4A4A4A;
+    border: 1px solid #E8E8E8;
+    border-radius: 0.5rem;
+  }
+  
+  .news:hover{
+    box-shadow: 0px 21px 36px -14px rgba(220,220,220,1);;
+  
+  }
+  
+  
+  .news .img-figure {
+      position: relative;
+  }
+  
+  .news .img-figure img {
+      position: relative;	
+      overflow: hidden;
+      transition: all 1s ease;
+  }
+  
+  .news:hover .img-figure img {
+      transform: scale(1.10);
+  }
+  
+  .news .title {
+      /*padding: 29px 30px;*/
+      padding: 20px 20px;
+      position: absolute;
+      left: 0;
+      background: #fff;
+      width: 100%;
+      height: 100%;
+      transition: all 0.5s ease;	
+  }
+  
+  
+  .news .title {
+    font-size:12px;
+    color:#929292;
+  
+  }
+  .news .title h1 {
+      margin: 10px 0 0;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 19px;
+      color: #4A4A4A;
+      text-align: left;
+      transition: all 0.5s ease;	
+  }
+  
+  .news:hover .title  {
+      margin-top: -100px;
+      background: #fff;
+      cursor:pointer;
+  }
+  
+  
+  .news:hover .title h1  {
+    color: #0085FF; 
+  }
+  
+  .news  p.description {
+      position: relative;
+      font-weight: normal;
+      line-height: 22px;
+      opacity: 0;
+  
+      text-align: left;
+  
+      padding: 15px 20px 0px 20px;
+      transition: all 0.5s ease;	
+  }
+  
+  .news:hover p.description  {
+      opacity: 1;
+      margin-top: -10px;
+  }
+  
+  p.more {
+      text-align: left;
+      margin-left:20px;
+  }
+  
+  .more a {
+      position: relative;
+      font-size: 13px;
+      margin-top: 30px;
+      display: block;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+      display: inline-block;
+      color: #929292;
+      padding: 6px 16px;
+      border: 1px solid #929292;
+      text-decoration: none;
+  }
+  
+  
+  .news:hover .more a {
+    background:#4A4A4A;
+    color:white;
+  }
+  
+  
+  
+  .cat {
+      background: #DCDCDC;
+      color: #4A4A4A;
+      text-transform: uppercase;
+      position: absolute;
+      left: 0;
+      top: 20px;
+      z-index: 1;
+      padding: 6px 16px;
+      opacity:.8;
+      transition: all 0.5s ease;	
+  }
+  
+  /**form create competition**/
+  form[name=competition_form]{
+  padding: 0.5rem;
+  margin: 0 auto;
+  }
+  
+#createForm{
+	margin: auto;
+	border: 3px solid #4E5D6C;
+	padding: 30px;
+	border-radius: 10px;
+	width: 60%;
 }
 
 #competition_form label {
@@ -93,20 +262,29 @@ form[name=competition_form] {
 
 /**footer**/
 footer {
-	background-color: #354141;
-	box-shadow: 4px 6px rgb(184, 5, 5);
+    background-color: #4E5D6C;
+    margin-top: 100px;
+    padding: 0rem;
+    position: fixed;
+    bottom: 0px;
+    
+    /* Maybe: position: fixed-bottom; */ 
+} 
+
+#footer p{
+	margin-bottom: 0px;
 }
 
 /**Register**/
 #registerTitle {
-	color: rgb(184, 5, 5);
+	color: #f0ad4e;
 	text-align: center;
 	text-decoration: underline;
 	margin-bottom: 30px;
 }
 
 #registerForm {
-	border: 3px solid rgb(184, 5, 5);
+	border: 3px solid #f0ad4e;
 	border-radius: 1rem;
 	padding: 10px;
 	color: white;
@@ -124,14 +302,14 @@ footer {
 
 /**Login**/
 #loginTitle {
-	color: rgb(184, 5, 5);
+	color: #f0ad4e;
 	text-align: center;
 	text-decoration: underline;
 	margin-bottom: 30px;
 }
 
 #loginForm {
-	border: 3px solid rgb(184, 5, 5);
+	border: 3px solid #f0ad4e;
 	border-radius: 1rem;
 	padding: 10px;
 	color: white;
@@ -139,6 +317,10 @@ footer {
 
 #loginForm form input {
 	display: block;
+}
+
+#logRegister {
+	color: white;
 }
 
 #remember_me {
@@ -151,7 +333,6 @@ footer {
 }
 
 #userLinks a {
-	color: black;
 }
 
 /**SearchResults**/
@@ -163,7 +344,7 @@ footer {
 #information {
 	margin-bottom: 30px;
 	margin-top: 30px;
-	border: 3px solid rgb(184, 5, 5);
+	border: 3px solid #4E5D6C;
 	border-radius: 1rem;
 	padding: 10px;
 	text-align: center;
@@ -174,7 +355,7 @@ footer {
 }
 
 #information ul li {
-	color: white;
+	
 }
 
 #information ul li b {
@@ -208,4 +389,58 @@ footer {
 		width: 450px;
 
 	}
+}
+/*CompetitionView**/
+.table {
+	border: 2px solid white;
+}
+
+.table th {
+	background-color: #DF691A;
+	color: #000;
+}
+
+#matchDays {
+	display: flex;
+}
+
+.matchDay {
+	margin-right: 0px;
+	width: 900px;
+	border: 2px solid #f0ad4e;
+	border-radius: 20px;
+	margin: 20px;
+	padding: 15px;
+	margin-top: 75px;
+}
+
+.marginFix {
+	width: 40px;
+	padding-right: 10px;
+}
+
+.tHead {
+	
+}
+
+td{
+
+}	
+
+/**HOMEPAGE OVERWRITE*//
+.darkGrey {
+	background-color: grey !important;
+	color: white;
+}
+
+#ui-id-1{
+	width:20rem;
+	background-color: white;
+	color:black;
+	list-style:none;
+	padding:0.3rem;
+}
+
+.ui-helper-hidden-accessible{
+	display:none;
 }
