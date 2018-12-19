@@ -36,11 +36,13 @@ main {
 }
 
 .navbar {
+
+	margin-bottom: 50px;
+	padding: 0px;
 }
 
 .navbar ul li a:hover {
-	background-color: rgb(184, 5, 5);
-	border: 3px solid rgb(184, 5, 5);
+	background-color: #f0ad4e;
 }
 
 p, h2, h3 {
@@ -65,9 +67,7 @@ h5 {
 form[name=competition_form]{
 padding: 0.5rem;
 margin: 0 auto;
-
 }
-
 
 .news {
     background: #354141;
@@ -199,8 +199,15 @@ margin: 0 auto;
   form[name=competition_form]{
   padding: 0.5rem;
   margin: 0 auto;
-  
   }
+  
+#createForm{
+	margin: auto;
+	border: 3px solid #4E5D6C;
+	padding: 30px;
+	border-radius: 10px;
+	width: 60%;
+}
 
 #competition_form label{
 	margin-right: 1rem;
@@ -227,9 +234,8 @@ margin: 0 auto;
  
 /**footer**/
 footer {
-    background-color: #354141;
-    box-shadow: 4px 6px rgb(184, 5, 5);
-    
+    background-color: #4E5D6C;
+    margin-top: 100px;    
     /* Maybe: position: fixed-bottom; */ 
 } 
 
@@ -336,6 +342,7 @@ footer {
 	margin-right: 0px;
 	width: 900px;
 	border: 2px solid #f0ad4e;
+	border-radius: 20px;
 	margin: 20px;
 	padding: 15px;
 	margin-top: 75px;
