@@ -23,22 +23,26 @@ easy_admin:
             label: 'My Users'
             list:
                 title: "Most recent Users"
-                fields: ['Username', 'email'] 
+                fields: ['Username', 'email']
+                actions:
+                     - { name: 'edit', icon: 'pencil', label: 'Edit' }
+                
             edit:
                 title: "Edit Page Users"
                 
-                #fields: ['Username', 'email', 'roles', 'password'] 
+                fields: ['Username', 'email', 'roles', 'password', 'competitions'] 
             disabled_actions: ['new']                   
         Competition:
             class: App\Entity\Competition
             list:
                 title: "Most recent Competitions"
-                fields: ['name', 'creation date', 'location']
+                actions: ['-edit']
             edit:
                 title: "Edit Page Competition"
         Tag:
             class: App\Entity\Tag
             list:
                 title: "Most recent Tags" 
+                actions: ['-edit']
             edit:
                 title: "Edit Page Tags" 

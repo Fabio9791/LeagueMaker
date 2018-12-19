@@ -6,8 +6,16 @@
 	color: red;
 }
 
-.list-user{
-	background-color: #b7b7ff;
+.list-user, .edit-user{
+	background-color: #00ff80;
+}
+
+.list-competition, .edit-competition{
+	background-color: #00ff80;
+}
+
+.list-tag, .edit-tag{
+	background-color: #00ff80;
 }
 
 .main-sidebar{
