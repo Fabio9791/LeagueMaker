@@ -40,7 +40,7 @@ p, h2, h3 {
 
  header {
     margin-bottom: 1rem;
-    box-shadow: 4px 6px rgb(184, 5, 5);
+    box-shadow: 4px 6px #929292;
 }
 
 .create{
@@ -228,14 +228,14 @@ footer {
 
 /**Register**/
 #registerTitle {
-	color: rgb(184, 5, 5);
+	color: #929292;
 	text-align: center;
 	text-decoration: underline;
 	margin-bottom: 30px;
 }
 
 #registerForm {
-	border: 3px solid rgb(184, 5, 5);
+	border: 3px solid #929292;
 	border-radius: 1rem;
 	padding: 10px;
 	color: white;
@@ -253,14 +253,14 @@ footer {
 
 /**Login**/
 #loginTitle {
-	color: rgb(184, 5, 5);
+	color: #929292;
 	text-align: center;
 	text-decoration: underline;
 	margin-bottom: 30px;
 }
 
 #loginForm {
-	border: 3px solid rgb(184, 5, 5);
+	border: 3px solid #929292;
 	border-radius: 1rem;
 	padding: 10px;
 	color: white;
@@ -289,7 +289,7 @@ footer {
 }
 
 .table th {
-	background-color: #B58900;
+	background-color: #DF691A;
 	color: #000;
 }
 
