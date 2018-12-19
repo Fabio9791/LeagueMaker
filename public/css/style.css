@@ -83,6 +83,7 @@ p, h2, h3 {
 	margin: 30px;
 }
 
+
 /**past/on going tables**/
 #competitionDisplay{
 	display: flex;
@@ -90,7 +91,11 @@ p, h2, h3 {
 }
 
 h5 {
-	color: black;
+	color: white;
+}
+
+#publicComps {
+	margin-top: 50px;
 }
 
 /**form create competition**/
@@ -366,7 +371,6 @@ footer {
 
 /*CompetitionView**/
 .table {
-	margin-top: 100px;
 	border: 2px solid white;
 }
 
@@ -401,3 +405,9 @@ footer {
 td{
 
 }	
+
+/**HOMEPAGE OVERWRITE*//
+.darkGrey {
+	background-color: grey !important;
+	color: white;
+}

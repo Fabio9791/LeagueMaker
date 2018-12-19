@@ -38,24 +38,7 @@ homepage
 				</p>
 			</article>
 		</section>
-		
-		<!-- 
-		<ul>
-			<li>The organizer <b>creates his competition online.</b></li>
-			<li>Players <b>register via LeagueMaker</b> for the competition.
-			</li>
-			<li>Players enter their <b>own results</b>. The organizer
-				moderates if necessary.
-			</li>
-			<li>Generation of an <b>optimized</b> format for the pleasure of
-				all players.
-			</li>
-			<li>Ranking and scoreboard are <b>generated on LeagueMaker.</b></li>
-		</ul>
-		 -->
-		
-		
-		
+
 		<a href="{{ path("fos_user_security_login") }}">
 			<button type="button" class="btn btn-primary btn-lg">Create a competition now!</button>
 		</a>
@@ -155,21 +138,21 @@ homepage
 	{% endif %}
 </section>
 <!-- Display of competitions -->
-<main class="container">
+<main class="container" id="publicComps">
 <hr>
-<div id="competitionDisplay">
-	<section>
+<div id="competitionDisplay" class=row>
+	<section class=col>
 		<h5>Finished competitions</h5>
 		<div class="container">
 			<div class="row create">
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Creation date</th>
-							<th>Location</th>
-							<th>Creator</th>
-							<th></th>
+							<th style="background-color: #5cb85c">Name</th>
+							<th style="background-color: #5cb85c">Creation date</th>
+							<th style="background-color: #5cb85c">Location</th>
+							<th style="background-color: #5cb85c">Creator</th>
+							<th style="background-color: #5cb85c"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -190,65 +173,69 @@ homepage
 			</div>
 		</div>
 	</section>
-	<section>
+	<section class="col">
 		<h5>Ongoing competitions</h5>
-		<div class="row create">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Creation date</th>
-						<th>Location</th>
-						<th>Creator</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for onGoingCompetition in onGoingCompetitions %}
-					<tr>
-						<td>{{ onGoingCompetition.getName() }}</td>
-						<td>{{ onGoingCompetition.getCreationDate()|date('Y-m-d') }}</td>
-						<td>{{ onGoingCompetition.getLocation() }}</td>
-						<td>{{ onGoingCompetition.getUser().getUsername() }}</td>
-						<td><a
-							href="{{ path("view_competition", {'id':onGoingCompetition.getId()}) }}">
-								<button type="button" class="btn btn-primary btn-sm">View</button>
-						</a></td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
+		<div class="container">
+    		<div class="row create">
+    			<table class="table">
+    				<thead>
+    					<tr>
+    						<th style="background-color: #f0ad4e">Name</th>
+    						<th style="background-color: #f0ad4e">Creation date</th>
+    						<th style="background-color: #f0ad4e">Location</th>
+    						<th style="background-color: #f0ad4e">Creator</th>
+    						<th style="background-color: #f0ad4e"></th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					{% for onGoingCompetition in onGoingCompetitions %}
+    					<tr>
+    						<td>{{ onGoingCompetition.getName() }}</td>
+    						<td>{{ onGoingCompetition.getCreationDate()|date('Y-m-d') }}</td>
+    						<td>{{ onGoingCompetition.getLocation() }}</td>
+    						<td>{{ onGoingCompetition.getUser().getUsername() }}</td>
+    						<td><a
+    							href="{{ path("view_competition", {'id':onGoingCompetition.getId()}) }}">
+    								<button type="button" class="btn btn-primary btn-sm">View</button>
+    						</a></td>
+    					</tr>
+    					{% endfor %}
+    				</tbody>
+    			</table>
+    		</div>
+    	</div>
 	</section>
 
-	<section>
+	<section class="col">
 		<h5>Futur competitions</h5>
-		<div class="row create">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Creation date</th>
-						<th>Location</th>
-						<th>Creator</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for futurCompetition in futurCompetitions %}
-					<tr>
-						<td>{{ futurCompetition.getName() }}</td>
-						<td>{{ futurCompetition.getCreationDate()|date('Y-m-d') }}</td>
-						<td>{{ futurCompetition.getLocation() }}</td>
-						<td>{{ futurCompetition.getUser().getUsername() }}</td>
-						<td><a
-							href="{{ path("view_competition", {'id':futurCompetition.getId()}) }}">
-								<button type="button" class="btn btn-primary btn-sm">View</button>
-						</a></td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+		<div class="container">
+    		<div class="row create">
+    			<table class="table">
+    				<thead>
+    					<tr>
+    						<th style="background-color: #5bc0de">Name</th>
+    						<th style="background-color: #5bc0de">Creation date</th>
+    						<th style="background-color: #5bc0de">Location</th>
+    						<th style="background-color: #5bc0de">Creator</th>
+    						<th style="background-color: #5bc0de"></th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					{% for futurCompetition in futurCompetitions %}
+    					<tr>
+    						<td>{{ futurCompetition.getName() }}</td>
+    						<td>{{ futurCompetition.getCreationDate()|date('Y-m-d') }}</td>
+    						<td>{{ futurCompetition.getLocation() }}</td>
+    						<td>{{ futurCompetition.getUser().getUsername() }}</td>
+    						<td><a
+    							href="{{ path("view_competition", {'id':futurCompetition.getId()}) }}">
+    								<button type="button" class="btn btn-primary btn-sm">View</button>
+    						</a></td>
+    					</tr>
+    					{% endfor %}
+    				</tbody>
+    			</table>
+    		</div>
 		</div>
 	</section>
 </div>
