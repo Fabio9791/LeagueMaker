@@ -402,6 +402,7 @@ footer {
 
 #matchDays {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .matchDay {
@@ -443,4 +444,8 @@ td{
 
 .ui-helper-hidden-accessible{
 	display:none;
+}
+
+body{
+	background-color:red;
 }
