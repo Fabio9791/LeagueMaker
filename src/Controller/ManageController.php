@@ -79,8 +79,13 @@ class ManageController extends Controller
 
         $matchDays = $competition->getMatchDays();
         for ($y = 0; $y < sizeof($matchDays) - 1; $y ++) {
+            $explodedMatchday = explode(" ", $matchDays[$y]->getLabel());
+            $dayToCompare = intval($explodedMatchday[1]);
             for ($i = $y + 1; $i < sizeof($matchDays); $i ++) {
-                if (intval(substr($matchDays[$y]->getLabel(), strlen($matchDays[$y]->getLabel()) - 1)) > intval(substr($matchDays[$i]->getLabel(), strlen($matchDays[$i]->getLabel()) - 1))) {
+                $explodedMatchday = explode(" ", $matchDays[$i]->getLabel());
+                $day = intval($explodedMatchday[1]);
+
+                if ($dayToCompare > $day) {
                     $temp = $matchDays[$y];
                     $matchDays[$y] = $matchDays[$i];
                     $matchDays[$i] = $temp;
