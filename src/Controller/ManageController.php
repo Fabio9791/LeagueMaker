@@ -7,12 +7,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Competition;
 use App\Entity\Status;
-use Service\LeagueDisplayer;
 use phpDocumentor\Reflection\Types\Boolean;
+use App\Service\LeagueDisplayer;
+use Doctrine\Common\Collections\Collection;
 
 class ManageController extends Controller
 {
-
     /**
      *
      * @Route("/competition/manage/{id}", name="manage_competition", methods={"GET", "POST"})
@@ -24,10 +24,11 @@ class ManageController extends Controller
         {
             return $this->redirectToRoute('homepage');
         }
+        
         $matchDays = $displayer->orderByMatchDays($competition->getMatchDays());
         if ($request->request->count() > 0)
         {
-            requestScores($request, $manager, $displayer, $competition, $matchDays);
+            $this->requestScores($request, $manager, $competition, $matchDays);
         }
         
         $matchDayTable = $displayer->prepareMatchDayTable($matchDays);
@@ -37,7 +38,7 @@ class ManageController extends Controller
         ]);
     }
     
-    private function requestScores(Request $request, ObjectManager $manager, Competition $competition, array $matchDays)
+    private function requestScores(Request $request, ObjectManager $manager, Competition $competition, Collection $matchDays)
     {
         $finished = true;
         $started = false;
@@ -80,11 +81,11 @@ class ManageController extends Controller
                 }
             }
         }
-        setStatus($manager, $competition, $finished, $started);
+        $this->setStatus($manager, $competition, $finished, $started);
         $manager->flush();
     }
     
-    private function setStatus(ObjectManager $manager, Competition $competition, Boolean $finished, Boolean $started)
+    private function setStatus(ObjectManager $manager, Competition $competition, bool $finished, bool $started)
     {
         if ($finished)
         {
