@@ -114,7 +114,11 @@ class ViewController extends Controller
             $encountersArray=[];
             for ($j = 0; $j < sizeof($encounters); $j ++) {
                 $scores = $encounters[$j]->getScores();
-                $encounter = [$scores[0]->getCompetitorId()->getName(), $scores[0]->getScore() , $scores[1]->getScore(), $scores[1]->getCompetitorId()->getName()];
+                $encounter = [
+                    $scores[0]->getCompetitorId()->getName(), 
+                    $scores[0]->getScore() , 
+                    $scores[1]->getScore(), 
+                    $scores[1]->getCompetitorId()->getName()];
                 array_push($encountersArray,$encounter);
             }
             array_push($table2[$i],$encountersArray);

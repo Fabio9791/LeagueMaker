@@ -4,7 +4,7 @@
     <div class="container">
         <form method="POST">
             <section id="editResults">
-                {% for matchday in table2 %}
+                {% for matchday in $matchDayTable %}
                     <section class="matchDay">
                         <table>
                             <thead>
@@ -13,11 +13,11 @@
                             <tbody>
                                 {% for encounter in matchday[1]  %}
                                     <tr>
-                                        <td class="teamName">{{ encounter[0] }}</td>
-                                        <td><input value="{{ encounter[1] }}" name="{{ encounter[0]~loop.parent.loop.index }}"/></td>
+                                        <td class="teamName">{{ encounter['HomeTeam'] }}</td>
+                                        <td><input value="{{ encounter['HomeScore'] }}" name="{{ encounter['HomeTeam']~loop.parent.loop.index }}"/></td>
                                         <td>-</td>
-                                        <td><input value="{{ encounter[2] }}" name="{{ encounter[3]~loop.parent.loop.index }}"/></td>
-                                        <td class="teamName away">{{ encounter[3] }}</td>
+                                        <td><input value="{{ encounter['AwayScore'] }}" name="{{ encounter['AwayTeam']~loop.parent.loop.index }}"/></td>
+                                        <td class="teamName away">{{ encounter['AwayTeam'] }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
