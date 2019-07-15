@@ -8,10 +8,10 @@
                     <section class="matchDay">
                         <table>
                             <thead>
-                                <th colspan="5">{{ matchday[0] }}</th>
+                                <th colspan="5">{{ matchday['MatchDayLabel'] }}</th>
                             </thead>
                             <tbody>
-                                {% for encounter in matchday[1]  %}
+                                {% for encounter in matchday['Encounters']  %}
                                     <tr>
                                         <td class="teamName">{{ encounter['HomeTeam'] }}</td>
                                         <td><input value="{{ encounter['HomeScore'] }}" name="{{ encounter['HomeTeam']~loop.parent.loop.index }}"/></td>

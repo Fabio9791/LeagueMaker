@@ -15,14 +15,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for competitor in table %}
+                {% for competitor in rankingTable %}
                     <tr>
                         <td>{{ loop.index }}</td>
-                        <td>{{ competitor[0] }}</td>
-                        <td>{{ competitor[1] }}</td>
-                        <td>{{ competitor[2] }}</td>
-                        <td>{{ competitor[3] }}</td>
-                        <td>{{ competitor[2]-competitor[3] }}</td>
+                        <td>{{ competitor['TeamName'] }}</td>
+                        <td>{{ competitor['Points'] }}</td>
+                        <td>{{ competitor['ScoredGoals'] }}</td>
+                        <td>{{ competitor['GoalsConceded'] }}</td>
+                        <td>{{ competitor['ScoredGoals']-competitor['GoalsConceded'] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -30,22 +30,22 @@
 
 
         <section id="matchDays">
-            {% for matchday in table2 %}
+            {% for matchday in matchDayTable %}
                 <section class="matchDay">
                     <table>
                         <thead>
-                            <th colspan="5">{{ matchday[0] }}</th>
+                            <th colspan="5">{{ matchday['MatchDayLabel'] }}</th>
                         </thead>
                         <tbody>
-                            {% for encounter in matchday[1]  %}
+                            {% for encounter in matchday['Encounters']  %}
                                 <tr>
-                                    <td class="teamName">{{ encounter[0] }}</td>
-                                    <td>{{ encounter[1] }}</td>
+                                    <td class="teamName">{{ encounter['HomeTeam'] }}</td>
+                                    <td>{{ encounter['HomeScore'] }}</td>
                                     <td>
                                         -
                                     </td>
-                                    <td>{{ encounter[2] }}</td>
-                                    <td class="teamName away">{{ encounter[3] }}</td>
+                                    <td>{{ encounter['AwayScore'] }}</td>
+                                    <td class="teamName away">{{ encounter['AwayTeam'] }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>

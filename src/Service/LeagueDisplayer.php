@@ -31,7 +31,7 @@ class LeagueDisplayer
         for ($i = 0; $i < sizeof($matchDays); $i ++)
         {
             array_push($matchDayTable, [
-                $matchDays[$i]->getLabel()
+                'MatchDayLabel' => $matchDays[$i]->getLabel()
             ]);
             $encounters = $matchDays[$i]->getEncounter();
             $encountersArray = [];
@@ -46,9 +46,109 @@ class LeagueDisplayer
                 ];
                 array_push($encountersArray, $encounter);
             }
-            array_push($matchDayTable[$i], $encountersArray);
+            $matchDayTable[$i]['Encounters'] = $encountersArray;
         }
         return $matchDayTable;
+    }
+    
+    public function orderRanking(array $table)
+    {
+        for ($i = 0; $i < sizeof($table) - 1; $i ++)
+        {
+            for ($j = $i + 1; $j < sizeof($table); $j ++)
+            {
+                if ($table[$i]['Points'] < $table[$j]['Points'] ||
+                    ($table[$i]['Points'] === $table[$j]['Points'] &&
+                        ($table[$i]['ScoredGoals'] - $table[$i]['GoalsConceded'] < $table[$j]['ScoredGoals'] - $table[$j]['GoalsConceded'] ||
+                            ($table[$i]['ScoredGoals'] - $table[$i]['GoalsConceded'] === $table[$j]['ScoredGoals'] - $table[$j]['GoalsConceded'] &&
+                                $table[$i]['ScoredGoals'] < $table[$j]['ScoredGoals']))))
+                {
+                    $temp = $table[$i];
+                    $table[$i] = $table[$j];
+                    $table[$j] = $temp;
+                }
+            }
+        }
+        return $table;
+    }
+    
+    public function initiateRanking(Collection $competitors)
+    {
+        $table = [];
+        foreach ($competitors as $competitor)
+        {
+            array_push($table, [
+                'TeamName' => $competitor->getName(),
+                'Points' => 0,
+                'ScoredGoals' => 0,
+                'GoalsConceded' => 0
+            ]);
+        }
+        return $table;
+    }
+    
+    public function prepareRankingTable(Collection $encounters, array $rankingTable)
+    {
+        foreach ($encounters as $encounter)
+        {
+            $scores = $encounter->getScores();
+            var_dump($scores[0]->getScore());
+            var_dump($scores[1]->getScore());
+            
+            if ($scores[0]->getScore() > $scores[1]->getScore())
+            {
+                $HomeTeamPoints = 3;
+                $AwayTeamPoints = 0;
+            } elseif ($scores[0]->getScore() < $scores[1]->getScore())
+            {
+                $HomeTeamPoints = 0;
+                $AwayTeamPoints = 3;
+            } elseif (($scores[0]->getScore() === $scores[1]->getScore()) && $scores[1]->getScore() !== null)
+            {
+                $HomeTeamPoints = 1;
+                $AwayTeamPoints = 1;
+                var_dump("deng mam");
+            } else
+            {
+                $HomeTeamPoints = 0;
+                $AwayTeamPoints = 0;
+            }
+            $homeTeam = [
+                'TeamName' => $scores[0]->getCompetitorId()->getName(),
+                'Points' => $HomeTeamPoints,
+                'ScoredGoals' => $scores[0]->getScore(),
+                'GoalsConceded' => $scores[1]->getScore()
+            ];
+            $awayTeam = [
+                'TeamName' => $scores[1]->getCompetitorId()->getName(),
+                'Points' => $AwayTeamPoints,
+                'ScoredGoals' => $scores[1]->getScore(),
+                'GoalsConceded' => $scores[0]->getScore()
+            ];
+            
+            $rankingTable = $this->updateRanking($rankingTable, $homeTeam, $awayTeam);
+        }
+        return $rankingTable;
+    }
+    
+    private function updateRanking(array $rankingTable, array $homeTeam, array $awayTeam)
+    {
+        for ($i = 0; $i < sizeof($rankingTable); $i ++)
+        {
+            if ($rankingTable[$i]['TeamName'] == $homeTeam['TeamName'])
+            {
+                $rankingTable[$i]['Points'] += $homeTeam['Points'];
+                $rankingTable[$i]['ScoredGoals'] += $homeTeam['ScoredGoals'];
+                $rankingTable[$i]['GoalsConceded'] += $homeTeam['GoalsConceded'];
+            }
+            if ($rankingTable[$i]['TeamName'] == $awayTeam['TeamName'])
+            {
+                $rankingTable[$i]['Points'] += $awayTeam['Points'];
+                $rankingTable[$i]['ScoredGoals'] += $awayTeam['ScoredGoals'];
+                $rankingTable[$i]['GoalsConceded'] += $awayTeam['GoalsConceded'];
+            }
+        }
+        return $rankingTable;
     }
 }
 
