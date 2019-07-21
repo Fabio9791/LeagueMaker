@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Competition;
 use App\Entity\Status;
-use phpDocumentor\Reflection\Types\Boolean;
 use App\Service\LeagueDisplayer;
 use Doctrine\Common\Collections\Collection;
 

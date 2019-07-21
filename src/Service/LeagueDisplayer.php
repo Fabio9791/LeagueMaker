@@ -92,8 +92,6 @@ class LeagueDisplayer
         foreach ($encounters as $encounter)
         {
             $scores = $encounter->getScores();
-            var_dump($scores[0]->getScore());
-            var_dump($scores[1]->getScore());
             
             if ($scores[0]->getScore() > $scores[1]->getScore())
             {
@@ -107,7 +105,6 @@ class LeagueDisplayer
             {
                 $HomeTeamPoints = 1;
                 $AwayTeamPoints = 1;
-                var_dump("deng mam");
             } else
             {
                 $HomeTeamPoints = 0;
