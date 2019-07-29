@@ -1,3 +1,16 @@
+home_redirect:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: homepage
+        permanent: true
+
 controllers:
     resource: ../../src/Controller/
     type: annotation
+    prefix: /{_locale}
+    defaults:
+        _locale: en
+    requirements: 
+        _locale: en
+

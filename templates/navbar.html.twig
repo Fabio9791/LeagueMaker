@@ -1,9 +1,48 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<div>
-		<ul>
-    		
-      		  		
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav ml-auto">
+			{% set route = app.request.get('_route') %}
+
+			<li class="nav-item{% if route == 'homepage' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path("homepage") }}">{{ 'Home' }} </a>
+      		</li>
+
+  			<li class="nav-item{% if route == 'about' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path("about") }}">{{ 'About' }}</a>
+      		</li>
+      		
+      		{% if is_granted('ROLE_ADMIN') %}
+      		<li class="nav-item{% if route == 'secretAdministration' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path("easyadmin") }}" target="_blank">{{ 'Administration'|trans }}</a>
+      		</li>
+      		{% endif %}
+      		
+      		{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+      		<li class="nav-item{% if route == 'fos_user_registration_register' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path('fos_user_registration_register') }}">{{ 'Register' }}</a>
+      		</li>
+      		
+      		<li class="nav-item{% if route == 'fos_user_security_login' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path("fos_user_security_login") }}">{{ 'Login' }}</a>
+      		</li>
+      		{% endif %}
+      		
+      		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      		<li class="nav-item{% if route == 'create_competition' %} active{% endif %}">
+				<a class="nav-link" href="{{ path('create_competition') }}">{{ 'Create a competition' }}</a>
+			</li>
+			{% endif %}
+      		
+      		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      		<li class="nav-item{% if route == 'fos_user_security_logout' %} active{% endif %}">
+        		<a class="nav-link" href="{{ path("fos_user_security_logout") }}">{{ 'Logout' }}</a>
+      		</li>
+      		{% endif %}
+      		
     	</ul>
   	</div>
 </nav>

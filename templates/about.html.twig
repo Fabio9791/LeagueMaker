@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container" id="about">
+	<div><p>A League (or all-play-all tournament) is a competition in which
+		each contestant meets all other contestants in turn. A League
+		contrasts with an elimination tournament, in which participants are
+		eliminated after a certain number of losses. Also called Round-Robin
+		tournament.</p>
+	<h3>Scheduling algorithm</h3>
+	<p>
+		If n is the number of competitors, a pure round robin tournament
+		requires <strong>(n/2)*(n-1)</strong> games. If <strong>n</strong> is
+		even, then in each of (n-1) rounds, <strong>n/2</strong> games can be
+		run concurrently, provided there exist sufficient resources (e.g.
+		courts for a tennis tournament). If <strong>n</strong> is odd, there
+		will be <strong>n</strong> rounds, each with <strong>(n-1)/2</strong>
+		games, and one competitor having no game in that round. The circle
+		method is the standard algorithm to create a schedule for a
+		round-robin tournament. All competitors are assigned to numbers, and
+		then paired in the first round:
+	</p>
+	<p>
+		If there are an odd number of competitors, a dummy competitor can be
+		added, whose scheduled opponent in a given round does not play and has
+		a bye. The schedule can therefore be computed as though the dummy were
+		an ordinary player, either fixed or rotating. Instead of rotating one
+		position, any number relatively prime to <strong>(n-1)</strong> will
+		generate a complete schedule. More complex scheduling constraints may
+		require more complex algorithms.
+	</p></div>
+	<img
+		src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Round-robin_tournament_10teams_en.png"
+		alt="complex stuff">
+</div>
+{% endblock %}

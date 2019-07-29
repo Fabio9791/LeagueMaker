@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>pos</th>
+                    <th>name</th>
+                    <th>points</th>
+                    <th>scored</th>
+                    <th>got scored</th>
+                    <th>score diff</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for competitor in rankingTable %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ competitor['TeamName'] }}</td>
+                        <td>{{ competitor['Points'] }}</td>
+                        <td>{{ competitor['ScoredGoals'] }}</td>
+                        <td>{{ competitor['GoalsConceded'] }}</td>
+                        <td>{{ competitor['ScoredGoals']-competitor['GoalsConceded'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        <section id="matchDays">
+            {% for matchday in matchDayTable %}
+                <section class="matchDay">
+                    <table>
+                        <thead>
+                            <th colspan="5">{{ matchday['MatchDayLabel'] }}</th>
+                        </thead>
+                        <tbody>
+                            {% for encounter in matchday['Encounters']  %}
+                                <tr>
+                                    <td class="teamName">{{ encounter['HomeTeam'] }}</td>
+                                    <td>{{ encounter['HomeScore'] }}</td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>{{ encounter['AwayScore'] }}</td>
+                                    <td class="teamName away">{{ encounter['AwayTeam'] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </section>
+            {% endfor %}
+        </section>
+    </div>
+    <div id="mapContainer">
+        {% include 'mapbox.html.twig' %}
+    </div>
+{% endblock %}

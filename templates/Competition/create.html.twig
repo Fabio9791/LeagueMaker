@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<main class="container">
+<div class="row create">
+	<form method="POST" id="createForm">
+		
+		<div >
+			{% if error!="" %}
+			<button type="button" class="btn btn-danger">
+			<i class="fas fa-exclamation-circle"></i> : {{ error }}
+			{% endif %}
+			</button>
+		</div>
+		<br>
+		
+		<div class="form-group">
+			<label for="name">* Competition name : </label> <input type="text"
+				class="form-control" name="name" value="{{ app.request.request.get('name')|default('') }}">
+		</div>
+		<div class="form-group form-check">
+			<input type="checkbox" class="form-check-input" name="homeVisitor"  
+			{%  if app.request.request.get('homeVisitor') != null %} checked {%  endif %}>
+			<label class="form-check-label" for="homeVisitor">Home/Visitor</label>
+		</div>
+		<div class="form-group">
+			<label for="location">Location : </label> <input type="text"
+				class="form-control" name="location" value="{{ app.request.request.get('location')|default('') }}">
+		</div>
+		<div class="form-group">
+			<label for="tag">Tag : </label>
+			<div id="tags">
+				{% if app.request.request.get('tagData', 1) > 1 %}
+				{% for iterator in range(1, app.request.request.get('tagData', 1)) %}
+				<input type="text" class="form-control" name="tag{{ iterator }}"
+					id="tag{{ iterator }}"
+					value="{{ app.request.request.get('tag' ~ iterator)|default('') }}">
+				{% endfor %}
+				{% else %}
+				<input type="text" class="form-control" name="tag1" id="tag1">
+				{% endif %}
+			</div>
+			<button class="btn btn-success" id="btnTag" type="button">+</button>
+			<button class="btn btn-danger" id="btnTagRemove" type="button">-</button>
+		</div>
+		<div class="form-group">
+			<label for="competitor">* Competitors : </label>
+			<div id=competitors>
+				{% if app.request.request.get('competitorData', 1) > 1 %}
+				{% for iterator in range(1, app.request.request.get('competitorData', 1)) %}
+				<input type="text" class="form-control"
+					name="competitor{{ iterator }}" id="competitor{{ iterator }}"
+					value="{{ app.request.request.get('competitor' ~ iterator)|default('') }}">
+				{% endfor %}
+				{% else %}
+				<input type="text" class="form-control" name="competitor1"
+					id="competitor1"> <input type="text" class="form-control"
+					name="competitor2" id="competitor2">
+				{% endif %}
+			</div>
+			<button class="btn btn-success" id="btnCompetitor">+</button>
+			<button class="btn btn-danger" id="btnCompetitorRemove">-</button>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+		<input type="hidden" name="tagData" id="tagData" value="{{ app.request.request.get('tagData',1) }}"/> 
+		<input type="hidden" name="competitorData" id="competitorData" 
+			value="{{ app.request.request.get('competitorData',2) }}" />
+		<br>
+		</br>
+		
+		<p>* : These fields are mandatory</p>
+	</form>
+</div>
+</main>
+
+{% endblock %}

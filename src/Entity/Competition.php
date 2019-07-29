@@ -29,42 +29,10 @@ class Competition
     private $creationDate;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $eventDate;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $numberOfPlayers;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="competitions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $statusId;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Type", inversedBy="competitions")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $typeId;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="competitions")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $creatorId;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User")
-     */
-    private $userId;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="competitions")
@@ -81,15 +49,32 @@ class Competition
      */
     private $competitors;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="competitions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="string", length=1023, nullable=true)
+     */
+    private $location;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MatchDay", mappedBy="competition", orphanRemoval=true)
+     */
+    private $matchDays;
+
     public function __construct()
     {
-        $this->userId = new ArrayCollection();
+        $this->user = new ArrayCollection();
         $this->tagId = new ArrayCollection();
         $this->encounters = new ArrayCollection();
         $this->competitors = new ArrayCollection();
+        $this->matchDays = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -118,42 +103,6 @@ class Competition
         return $this;
     }
 
-    public function getEventDate(): ?\DateTimeInterface
-    {
-        return $this->eventDate;
-    }
-
-    public function setEventDate(?\DateTimeInterface $eventDate): self
-    {
-        $this->eventDate = $eventDate;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getNumberOfPlayers(): ?int
-    {
-        return $this->numberOfPlayers;
-    }
-
-    public function setNumberOfPlayers(int $numberOfPlayers): self
-    {
-        $this->numberOfPlayers = $numberOfPlayers;
-
-        return $this;
-    }
-
     public function getStatusId(): ?Status
     {
         return $this->statusId;
@@ -162,56 +111,6 @@ class Competition
     public function setStatusId(?Status $statusId): self
     {
         $this->statusId = $statusId;
-
-        return $this;
-    }
-
-    public function getTypeId(): ?Type
-    {
-        return $this->typeId;
-    }
-
-    public function setTypeId(?Type $typeId): self
-    {
-        $this->typeId = $typeId;
-
-        return $this;
-    }
-
-    public function getCreatorId(): ?User
-    {
-        return $this->creatorId;
-    }
-
-    public function setCreatorId(?User $creatorId): self
-    {
-        $this->creatorId = $creatorId;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getUserId(): Collection
-    {
-        return $this->userId;
-    }
-
-    public function addUserId(User $userId): self
-    {
-        if (!$this->userId->contains($userId)) {
-            $this->userId[] = $userId;
-        }
-
-        return $this;
-    }
-
-    public function removeUserId(User $userId): self
-    {
-        if ($this->userId->contains($userId)) {
-            $this->userId->removeElement($userId);
-        }
 
         return $this;
     }
@@ -302,5 +201,65 @@ class Competition
         }
 
         return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?string $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MatchDay[]
+     */
+    public function getMatchDays(): Collection
+    {
+        return $this->matchDays;
+    }
+
+    public function addMatchDay(MatchDay $matchDay): self
+    {
+        if (!$this->matchDays->contains($matchDay)) {
+            $this->matchDays[] = $matchDay;
+            $matchDay->setCompetition($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatchDay(MatchDay $matchDay): self
+    {
+        if ($this->matchDays->contains($matchDay)) {
+            $this->matchDays->removeElement($matchDay);
+            // set the owning side to null (unless already changed)
+            if ($matchDay->getCompetition() === $this) {
+                $matchDay->setCompetition(null);
+            }
+        }
+
+        return $this;
+    }
+    
+    public function __toString()
+    {
+        return $this->name;
     }
 }

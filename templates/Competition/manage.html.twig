@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <form method="POST">
+            <section id="editResults">
+                {% for matchday in matchDayTable %}
+                    <section class="matchDay">
+                        <table>
+                            <thead>
+                                <th colspan="5">{{ matchday['MatchDayLabel'] }}</th>
+                            </thead>
+                            <tbody>
+                                {% for encounter in matchday['Encounters']  %}
+                                    <tr>
+                                        <td class="teamName">{{ encounter['HomeTeam'] }}</td>
+                                        <td><input value="{{ encounter['HomeScore'] }}" name="{{ encounter['HomeTeam']~loop.parent.loop.index }}"/></td>
+                                        <td>-</td>
+                                        <td><input value="{{ encounter['AwayScore'] }}" name="{{ encounter['AwayTeam']~loop.parent.loop.index }}"/></td>
+                                        <td class="teamName away">{{ encounter['AwayTeam'] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
+                {% endfor %}
+            </section>
+            <article>
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <button class="btn btn-success btn-sm" id="updateBtn" type="submit">Update</button>
+                    </div>
+                </div>
+            </article>
+        </form>
+    </div>
+{% endblock %}
